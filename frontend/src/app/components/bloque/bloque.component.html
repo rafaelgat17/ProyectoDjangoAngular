@@ -1,0 +1,23 @@
+<div class="bloque-container">
+    <h1>Bloque {{ bloqueId }}</h1>
+    
+    <div class="teoria-section">
+        <h2>Teoría del Bloque {{ bloqueId }}</h2>
+        <p>Aquí irá la teoría correspondiente a este bloque...</p>
+    </div>
+
+    <div class="ejercicio-section">
+        <h2>Ejercicio Dinámico</h2>
+        
+        <button (click)="generarEjercicio()" 
+                [disabled]="cargando"
+                class="btn-generar">
+        {{ cargando ? 'Generando...' : 'Generar Ejercicio' }}
+        </button>
+
+        <div *ngIf="circuitoGenerado" class="resultado">
+        <h3>Circuito Generado:</h3>
+        <pre>{{ circuitoGenerado | json }}</pre>
+        </div>
+    </div>
+</div>
