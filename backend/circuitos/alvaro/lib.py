@@ -125,74 +125,74 @@ class circuit():
         
             
         
-def draw(self):
-    # Crear posiciones en cuadrícula ordenada
-    pos = {}
-    
-    for node in self.nodes:
-        # Extraer índices del nombre del nodo (ej: "N12" -> fila=1, col=2)
-        idx = int(node[1])  # fila
-        jdx = int(node[2])  # columna
-        # Posicionar en cuadrícula: x = columna, y = fila invertida (para que se vea bien)
-        pos[node] = (jdx, -idx)
-    
-    # Crear etiquetas para las aristas con el tipo de componente y su valor
-    edge_labels = {}
-    for e in self.edges:
-        element = self.G[e[0]][e[1]]['element']
-        string_val = self.G[e[0]][e[1]].get('string')
+    def draw(self):
+        # Crear posiciones en cuadrícula ordenada
+        pos = {}
         
-        if string_val:
-            edge_labels[(e[0], e[1])] = f"{element}\n{string_val}"
-        else:
-            edge_labels[(e[0], e[1])] = element
+        for node in self.nodes:
+            # Extraer índices del nombre del nodo (ej: "N12" -> fila=1, col=2)
+            idx = int(node[1])  # fila
+            jdx = int(node[2])  # columna
+            # Posicionar en cuadrícula: x = columna, y = fila invertida (para que se vea bien)
+            pos[node] = (jdx, -idx)
+        
+        # Crear etiquetas para las aristas con el tipo de componente y su valor
+        edge_labels = {}
+        for e in self.edges:
+            element = self.G[e[0]][e[1]]['element']
+            string_val = self.G[e[0]][e[1]].get('string')
+            
+            if string_val:
+                edge_labels[(e[0], e[1])] = f"{element}\n{string_val}"
+            else:
+                edge_labels[(e[0], e[1])] = element
 
-    # Determinar filas y columnas para el título
-    rows = max([int(node[1]) for node in self.nodes]) + 1
-    cols = max([int(node[2]) for node in self.nodes]) + 1
+        # Determinar filas y columnas para el título
+        rows = max([int(node[1]) for node in self.nodes]) + 1
+        cols = max([int(node[2]) for node in self.nodes]) + 1
 
-    plt.figure(figsize=(12, 8))
-    
-    # Dibujar nodos
-    nx.draw_networkx_nodes(
-        self.G, pos,
-        node_color='lightblue',
-        node_size=1000,
-        edgecolors='black',
-        linewidths=2
-    )
-    
-    # Dibujar etiquetas de nodos
-    nx.draw_networkx_labels(
-        self.G, pos,
-        font_size=10,
-        font_weight='bold'
-    )
-    
-    # Dibujar aristas
-    nx.draw_networkx_edges(
-        self.G, pos,
-        arrows=True,
-        arrowstyle='-|>',
-        arrowsize=20,
-        edge_color='gray',
-        width=2,
-        connectionstyle='arc3,rad=0.1'
-    )
-    
-    # Dibujar etiquetas de componentes
-    nx.draw_networkx_edge_labels(
-        self.G, pos,
-        edge_labels=edge_labels,
-        font_color='darkred',
-        font_size=8,
-        bbox=dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor='gray', alpha=0.8)
-    )
-    
-    plt.title(f'Circuito {rows}x{cols}', fontsize=14, fontweight='bold')
-    plt.axis('equal')
-    plt.grid(True, alpha=0.3, linestyle='--')
-    plt.tight_layout()
+        plt.figure(figsize=(12, 8))
+        
+        # Dibujar nodos
+        nx.draw_networkx_nodes(
+            self.G, pos,
+            node_color='lightblue',
+            node_size=1000,
+            edgecolors='black',
+            linewidths=2
+        )
+        
+        # Dibujar etiquetas de nodos
+        nx.draw_networkx_labels(
+            self.G, pos,
+            font_size=10,
+            font_weight='bold'
+        )
+        
+        # Dibujar aristas
+        nx.draw_networkx_edges(
+            self.G, pos,
+            arrows=True,
+            arrowstyle='-|>',
+            arrowsize=20,
+            edge_color='gray',
+            width=2,
+            connectionstyle='arc3,rad=0.1'
+        )
+        
+        # Dibujar etiquetas de componentes
+        nx.draw_networkx_edge_labels(
+            self.G, pos,
+            edge_labels=edge_labels,
+            font_color='darkred',
+            font_size=8,
+            bbox=dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor='gray', alpha=0.8)
+        )
+        
+        plt.title(f'Circuito {rows}x{cols}', fontsize=14, fontweight='bold')
+        plt.axis('equal')
+        plt.grid(True, alpha=0.3, linestyle='--')
+        plt.tight_layout()
     
     
 

@@ -11,9 +11,30 @@ def test_connection(request):
 
 @api_view(['POST'])
 def generar_circuito(request):
-    # Aqui ira tu logica con la libreria de tu tutor
-    # Por ahora devolvemos algo basico
-    return Response ({
-        'mensaje': 'Circuito generado',
-        'datos': 'Aqui ira la imagen del circuito'
-    })
+    try:
+        # Obtener datos del request
+        bloque_id = request.data.get('bloque', '1')
+        
+        # AQUÍ irá tu librería
+        # Por ahora simulamos que generamos una imagen
+        
+        # Tu librería probablemente devuelva algo como:
+        # imagen = tu_libreria.generar_circuito(filas=2, columnas=3)
+        
+        # Para testing, devolvemos datos de ejemplo
+        return Response({
+            'mensaje': 'Circuito generado exitosamente',
+            'bloque': bloque_id,
+            'datos': {
+                'filas': 2,
+                'columnas': 3,
+                'componentes': ['Resistencia', 'Condensador', 'LED']
+            }
+            # Cuando tengas la imagen real, devolverás algo como:
+            # 'imagen_base64': imagen_en_base64
+        }, status=status.HTTP_200_OK)
+        
+    except Exception as e:
+        return Response({
+            'error': str(e)
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
