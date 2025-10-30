@@ -1,23 +1,78 @@
 <div class="bloque-container">
-    <h1>Bloque {{ bloqueId }}</h1>
+  <h1>Bloque {{ bloqueId }}</h1>
+  
+  <div class="teoria-section">
+    <h2>📚 Teoría del Bloque {{ bloqueId }}</h2>
+    <p>Aquí irá la teoría correspondiente a este bloque...</p>
+    <p>Contenido educativo sobre circuitos electrónicos.</p>
+  </div>
+
+  <div class="ejercicio-section">
+    <h2>⚡ Ejercicio Dinámico</h2>
     
-    <div class="teoria-section">
-        <h2>Teoría del Bloque {{ bloqueId }}</h2>
-        <p>Aquí irá la teoría correspondiente a este bloque...</p>
+    <!-- Controles para elegir tamaño -->
+    <div class="controles">
+      <div class="control-group">
+        <label for="rows">Filas (2-6):</label>
+        <input 
+          type="number" 
+          id="rows" 
+          [(ngModel)]="rows" 
+          min="2" 
+          max="6"
+          [disabled]="cargando">
+      </div>
+      
+      <div class="control-group">
+        <label for="cols">Columnas (2-6):</label>
+        <input 
+          type="number" 
+          id="cols" 
+          [(ngModel)]="cols" 
+          min="2" 
+          max="6"
+          [disabled]="cargando">
+      </div>
+    </div>
+    
+    <button (click)="generarEjercicio()" 
+            [disabled]="cargando"
+            class="btn-generar">
+      <span *ngIf="!cargando">🔧 Generar Ejercicio ({{ rows }}x{{ cols }})</span>
+      <span *ngIf="cargando">⏳ Generando...</span>
+    </button>
+
+    <!-- Mostrar mientras carga -->
+    <div *ngIf="cargando" class="loading">
+      <div class="spinner"></div>
+      <p>Generando circuito {{ rows }}x{{ cols }}...</p>
     </div>
 
-    <div class="ejercicio-section">
-        <h2>Ejercicio Dinámico</h2>
-        
-        <button (click)="generarEjercicio()" 
-                [disabled]="cargando"
-                class="btn-generar">
-        {{ cargando ? 'Generando...' : 'Generar Ejercicio' }}
-        </button>
+    <!-- Mostrar cuando hay resultado -->
+    <div *ngIf="circuitoGenerado && !cargando && circuitoGenerado.success" class="resultado">
+      <h3>✅ {{ circuitoGenerado.mensaje }}</h3>
+      
+      <div class="circuito-info">
+        <p><strong>📊 Información del circuito:</strong></p>
+        <ul>
+          <li><strong>Dimensiones:</strong> {{ circuitoGenerado.circuito.rows }}x{{ circuitoGenerado.circuito.cols }}</li>
+          <li><strong>Nodos:</strong> {{ circuitoGenerado.circuito.num_nodos }}</li>
+          <li><strong>Componentes:</strong> {{ circuitoGenerado.circuito.num_componentes }}</li>
+        </ul>
+      </div>
 
-        <div *ngIf="circuitoGenerado" class="resultado">
-        <h3>Circuito Generado:</h3>
-        <pre>{{ circuitoGenerado | json }}</pre>
-        </div>
+      <!-- AQUÍ SE MUESTRA LA IMAGEN -->
+      <div class="imagen-circuito">
+        <h4>🖼️ Circuito Generado:</h4>
+        <img [src]="circuitoGenerado.circuito.imagen" alt="Circuito eléctrico">
+      </div>
     </div>
+
+    <!-- Mostrar si hay error -->
+    <div *ngIf="circuitoGenerado && !circuitoGenerado.success" class="error">
+      <h3>❌ Error</h3>
+      <p>{{ circuitoGenerado.mensaje }}</p>
+      <p class="error-detail">{{ circuitoGenerado.error }}</p>
+    </div>
+  </div>
 </div>

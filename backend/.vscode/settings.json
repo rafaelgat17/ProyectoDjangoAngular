@@ -1,0 +1,21 @@
+{
+  // 🐍 Indica a VS Code qué Python usar
+  "python.defaultInterpreterPath": "C:\\Users\\rafco\\Desktop\\VSC NUEVO\\ProyectoDjangoAngular\\backend\\venv\\Scripts\\python.exe",
+
+  // 🧩 Permite a Pylance (el analizador) encontrar tus imports
+  "python.analysis.extraPaths": [
+    "./backend",             // carpeta del proyecto Django
+    "./circuitos",           // app Django
+    "./circuitos/alvaro",    // donde está lib.py, test_draw.py
+    "./circuitos/circuit-lib"
+  ],
+
+  // 🧠 Mejora la autocompletación e imports automáticos
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.useImportHeuristic": true,
+
+  // ⚙️ Formato bonito (opcional)
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": true
+}
+

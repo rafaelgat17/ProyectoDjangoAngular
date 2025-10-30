@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CircuitosService {
-  private apiUrl = 'http://localhost:8000/api/circuito';
+  private apiUrl = 'http://localhost:8000/api/circuitos';
 
   constructor(private http: HttpClient) { }
 

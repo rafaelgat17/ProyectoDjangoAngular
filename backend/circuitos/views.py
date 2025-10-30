@@ -8,7 +8,7 @@ matplotlib.use('Agg')  # IMPORTANTE: usar backend sin interfaz gráfica
 import matplotlib.pyplot as plt
 
 # Importar tu librería
-from .circuit_lib import lib
+from .circuitlib import lib
 
 @api_view(['GET'])
 def test_connection(request):
