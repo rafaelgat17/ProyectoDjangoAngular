@@ -21,3 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/circuitos/', include('circuitos.urls')),
 ]
+
+# Si el usuario hace por ejemplo una peticion a api/circuitos/test, primeramente
+# se redireccionara aqui y comprobara que efectivamente empieza por api/circuitos, la cual
+# tiene un include que señala a el urls.py de la app circuitos, en donde acabara buscando por /test
+

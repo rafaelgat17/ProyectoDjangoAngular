@@ -37,13 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'corsheaders',
-    'circuitos',
+    'rest_framework', # con esto django puede enviar y recibir datos en formato JSON
+    'corsheaders', # por defecto los navegadores no permiten que una web hable con un servidor, este middleware lo soluciona
+    'circuitos', # la aplicacion
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # va al principio para que los otros middlewares no intercedan.
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +54,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
+    "http://localhost:4200", # URL de angular
 ]
 
 REST_FRAMEWORK = {

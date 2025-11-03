@@ -12,8 +12,8 @@
         </div>
 
         <ul class="navbar-menu">
-            <li *ngFor="let bloque of bloques">
-                <a [routerLink]="['/bloque', bloque.id]" routerLinkActive="active">
+            <li *ngFor="let bloque of bloques"> <!-- empieza un bucle donde repite el li, tanto por cada elemento del array bloques -->
+                <a [routerLink]="['/bloque', bloque.id]" routerLinkActive="active"> <!-- Crea una URL, por ejemplo si bloque.id es 3, genera /bloque/3 -->
                     {{ bloque.nombre }}
                 </a>
             </li>
@@ -21,3 +21,4 @@
     </nav>
 </body>
 </html>
+

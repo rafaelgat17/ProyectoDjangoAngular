@@ -7,7 +7,7 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes),
-    provideHttpClient()  // ← Asegúrate de que esta línea esté aquí
+    provideRouter(routes), // Le dice a Angular que use el sistema de rutas que se definio en app.routes.ts
+    provideHttpClient() // Activa el modulo HTTP para poder hacer peticiones a Django.
   ]
 };
