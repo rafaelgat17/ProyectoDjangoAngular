@@ -34,11 +34,10 @@ def generar_circuito(request):
         bloque_id = request.data.get('bloque', '1') # Se obtiene el valor de bloque que se envio desde Angular, 1 por defecto.
         rows = request.data.get('rows', 2)
         cols = request.data.get('cols', 3)
-        seed = request.data.get('seed', None)
 
         # Se declaran los demas campos para realizar el circuito.
         
-        circuito = lib.circuit(rows=rows, cols=cols, seed=seed)
+        circuito = lib.circuit(rows=rows, cols=cols)
 
         # Llama a la libreria lib.py y crea el circuito aleatorio con las dimensiones que se mandaron desde Angular.
         
@@ -65,7 +64,7 @@ def generar_circuito(request):
         
         return Response({
             'success': True,
-            'mensaje': 'Circuito generado exitosamente', # Descripcion
+            'mensaje': 'Circuito generado exitosamente',
             'bloque': bloque_id,
             'circuito': { # Objeto con la informacion del circuito
                 'rows': rows,

@@ -6,12 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-brand">
+    <nav>
+        <div>
             <h2>Circuitos</h2>
         </div>
 
-        <ul class="navbar-menu">
+        <ul>
             <li *ngFor="let bloque of bloques"> <!-- empieza un bucle donde repite el li, tanto por cada elemento del array bloques -->
                 <a [routerLink]="['/bloque', bloque.id]" routerLinkActive="active"> <!-- Crea una URL, por ejemplo si bloque.id es 3, genera /bloque/3 -->
                     {{ bloque.nombre }}
