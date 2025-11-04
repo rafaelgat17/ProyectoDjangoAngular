@@ -2,13 +2,12 @@
   <h1>Bloque {{ bloqueId }}</h1>
   
   <div>
-    <h2>Teoría del Bloque {{ bloqueId }}</h2>
-    <p>Aquí irá la teoría correspondiente a este bloque...</p>
-    <p>Contenido educativo sobre circuitos electrónicos.</p>
+    <h2>Teoria del Bloque {{ bloqueId }}</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat suscipit iusto laudantium impedit, odio voluptatibus, molestiae modi incidunt non corrupti <br> veniam provident nesciunt soluta voluptates, neque cumque eos consequuntur nostrum!</p>
   </div>
 
   <div>
-    <h2>Ejercicio Dinámico</h2>
+    <h2>Ejercicio</h2>
     
     <div>
       <div>
@@ -22,11 +21,11 @@
       </div>
     </div>
     
-    <!-- ngModel actualiza el valor de rows y cols cuando el usuario cambia el valor -->
+    <!-- ngModel: actualiza el valor de rows y cols cuando el usuario cambia el valor -->
 
     <button (click)="generarEjercicio()" 
             [disabled]="cargando">
-      <span *ngIf="!cargando">Generar Ejercicio ({{ rows }}x{{ cols }})</span>
+      <span *ngIf="!cargando">Generar ejercicio ({{ rows }}x{{ cols }})</span>
       <span *ngIf="cargando">Generando...</span>
     </button>
     <!-- ngIf: si NO esta cargando "!cargando" saldra tal mensaje y cuando SI esta cargando saldra otro -->
@@ -37,27 +36,16 @@
       <p>Generando circuito {{ rows }}x{{ cols }}...</p>
     </div>
 
-    <!-- Mostrar cuando hay resultado -->
     <div *ngIf="circuitoGenerado && !cargando && circuitoGenerado.success" class="resultado">
       <h3>{{ circuitoGenerado.mensaje }}</h3>
-      
-      <div class="circuito-info">
-        <p><strong>Información del circuito:</strong></p>
-        <ul>
-          <li><strong>Dimensiones:</strong> {{ circuitoGenerado.circuito.rows }}x{{ circuitoGenerado.circuito.cols }}</li>
-          <li><strong>Nodos:</strong> {{ circuitoGenerado.circuito.num_nodos }}</li>
-          <li><strong>Componentes:</strong> {{ circuitoGenerado.circuito.num_componentes }}</li>
-        </ul>
-      </div>
 
-      <!-- AQUÍ SE MUESTRA LA IMAGEN -->
+
       <div class="imagen-circuito">
         <h4>Circuito Generado:</h4>
         <img [src]="circuitoGenerado.circuito.imagen" alt="Circuito eléctrico">
       </div>
     </div>
 
-    <!-- Mostrar si hay error -->
     <div *ngIf="circuitoGenerado && !circuitoGenerado.success" class="error">
       <h3>Error</h3>
       <p>{{ circuitoGenerado.mensaje }}</p>

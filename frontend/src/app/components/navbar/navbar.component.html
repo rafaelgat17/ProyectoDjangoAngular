@@ -8,12 +8,12 @@
 <body>
     <nav>
         <div>
-            <h2>Circuitos</h2>
+            <h2>Barra de navegacion</h2>
         </div>
 
         <ul>
-            <li *ngFor="let bloque of bloques"> <!-- empieza un bucle donde repite el li, tanto por cada elemento del array bloques -->
-                <a [routerLink]="['/bloque', bloque.id]" routerLinkActive="active"> <!-- Crea una URL, por ejemplo si bloque.id es 3, genera /bloque/3 -->
+            <li *ngFor="let bloque of bloques">
+                <a [routerLink]="['/bloque', bloque.id]" routerLinkActive="active">
                     {{ bloque.nombre }}
                 </a>
             </li>
@@ -22,3 +22,5 @@
 </body>
 </html>
 
+<!-- empieza un bucle donde repite el li, tanto por cada elemento del array bloques
+Crea una URL, por ejemplo si bloque.id es 3, genera /bloque/3 -->

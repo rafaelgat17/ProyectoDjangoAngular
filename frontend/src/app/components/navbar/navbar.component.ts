@@ -10,7 +10,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   // RouterLink: para navegar con [routerLink]
   // RouterLinkActive: para marcar el enlace activo
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
   bloques = [ // Array de objetos, cada uno con un id y un nombre.
