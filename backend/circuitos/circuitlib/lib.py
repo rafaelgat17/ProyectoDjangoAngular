@@ -123,70 +123,86 @@ class circuit():
             self.G[e[0]][e[1]]["str_value"] = f'{self.G[e[0]][e[1]]["value"]} V' if self.G[e[0]][e[1]]["element"] == 'v_source' else f'{self.G[e[0]][e[1]]["value"]} A'
         self.edges = list(self.G.edges(data=True))
         
-            
+        
+        
+        
+        
+        
         
     def draw(self):
-        # Crear posiciones en cuadrícula ordenada
+    
         pos = {}
         
+        # Se crea un diccionario vacio para la cuadricula
+        
         for node in self.nodes:
-            # Extraer índices del nombre del nodo (ej: "N12" -> fila=1, col=2)
             idx = int(node[1])  # fila
             jdx = int(node[2])  # columna
-            # Posicionar en cuadrícula: x = columna, y = fila invertida (para que se vea bien)
             pos[node] = (jdx, -idx)
+            
+            # Posicionar en cuadrícula: x = columna, y = fila invertida
         
         # Crear etiquetas para las aristas con el tipo de componente y su valor
+        
         edge_labels = {}
+        
+        # Se crea un diccionario vacio para las aristas
         for e in self.edges:
             element = self.G[e[0]][e[1]]['element']
             string_val = self.G[e[0]][e[1]].get('string')
+            
+            # self.0 seria el grafo
+            # e[0] el nodo origen
+            # e[1] el nodo destino
+            # 'element' el nombre del componente 
+            
+            # Se pone string porque en el caso de shortcircuit y opencircuit no tienen valor y daria error
             
             if string_val:
                 edge_labels[(e[0], e[1])] = f"{element}\n{string_val}"
             else:
                 edge_labels[(e[0], e[1])] = element
+                
+            # Entonces si la etiqueta tiene un valor se pone al lado del nombre del elemento, y si no, solo sale el nombre de la etiqueta
 
-        # Determinar filas y columnas para el título
+
         rows = max([int(node[1]) for node in self.nodes]) + 1
         cols = max([int(node[2]) for node in self.nodes]) + 1
 
-        plt.figure(figsize=(12, 8))
+        # Dimensiones del circuito
+
+        plt.figure(figsize=(8, 5))
         
-        # Dibujar nodos
         nx.draw_networkx_nodes(
             self.G, pos,
-            node_color='lightblue',
-            node_size=1000,
+            node_color='lightgreen',
+            node_size=800,
             edgecolors='black',
             linewidths=2
         )
         
-        # Dibujar etiquetas de nodos
         nx.draw_networkx_labels(
             self.G, pos,
             font_size=10,
             font_weight='bold'
         )
         
-        # Dibujar aristas
         nx.draw_networkx_edges(
             self.G, pos,
             arrows=True,
-            arrowstyle='-|>',
+            arrowstyle='-',
             arrowsize=20,
-            edge_color='gray',
+            edge_color='darkgray',
             width=2,
-            connectionstyle='arc3,rad=0.1'
+            connectionstyle='arc3,rad=0'
         )
         
-        # Dibujar etiquetas de componentes
         nx.draw_networkx_edge_labels(
             self.G, pos,
             edge_labels=edge_labels,
-            font_color='darkred',
+            font_color='black',
             font_size=8,
-            bbox=dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor='gray', alpha=0.8)
+            bbox=dict(boxstyle='round,pad=0.2', facecolor='white', edgecolor='gray', alpha=1)
         )
         
         plt.title(f'Circuito {rows}x{cols}', fontsize=14, fontweight='bold')
@@ -195,6 +211,10 @@ class circuit():
         plt.tight_layout()
     
     
+    
+    
+    
+
 
     def solve(self):
         self.n = len(self.nodes)
