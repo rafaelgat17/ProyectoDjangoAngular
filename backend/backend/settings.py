@@ -57,10 +57,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200", # URL de angular
 ]
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': []
 }
 
 ROOT_URLCONF = 'backend.urls'

@@ -1,26 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <nav>
-        <div>
-            <h2>Barra de navegacion</h2>
+    <nav class="navbar">
+    <div class="navbar-content">
+        <div class="navbar-brand">
+        <a [routerLink]="['/']">
+            <h2>Universidad de Sevilla</h2>
+        </a>
         </div>
-
-        <ul>
-            <li *ngFor="let bloque of bloques">
-                <a [routerLink]="['/bloque', bloque.id]" routerLinkActive="active">
-                    {{ bloque.nombre }}
-                </a>
-            </li>
+        
+        <ul class="navbar-menu">
+        <li *ngFor="let bloque of bloques" 
+            class="navbar-item"
+            (mouseenter)="abrirDesplegable(bloque.id)"
+            (mouseleave)="cerrarDesplegable()">
+            
+            <!-- Nombre del bloque -->
+            <span class="bloque-nombre">{{ bloque.nombre }}</span>
+            
+            <!-- Desplegable -->
+            <div class="desplegable" *ngIf="estaAbierto(bloque.id)">
+            <a [routerLink]="['/bloque', bloque.id, 'teoria']" 
+                routerLinkActive="active"
+                class="desplegable-item">
+                Teoría Bloque {{ bloque.id }}
+            </a>
+            <a [routerLink]="['/bloque', bloque.id, 'ejercicio']" 
+                routerLinkActive="active"
+                class="desplegable-item">
+                Ejercicio Bloque {{ bloque.id }}
+            </a>
+            </div>
+        </li>
         </ul>
+        
+        <div class="navbar-profile">
+        <span>Perfil</span>
+        </div>
+    </div>
     </nav>
-</body>
-</html>
-
-<!-- empieza un bucle donde repite el li, tanto por cada elemento del array bloques
-Crea una URL, por ejemplo si bloque.id es 3, genera /bloque/3 -->

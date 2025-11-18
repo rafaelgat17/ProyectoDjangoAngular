@@ -1,0 +1,52 @@
+.teoria-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  color: #1c1c1c;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  border-bottom: 4px solid red;
+  padding-bottom: 1rem;
+}
+
+.teoria-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.teoria-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid red;
+}
+
+.teoria-section h2 {
+  color: black;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.teoria-section p {
+  line-height: 1.8;
+  color: #1c1c1c;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.teoria-section ul {
+  padding-left: 2rem;
+  line-height: 2;
+  color: #1c1c1c;
+}
+
+.teoria-section li {
+  margin-bottom: 0.5rem;
+}

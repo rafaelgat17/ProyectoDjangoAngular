@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
 import { BloqueComponent } from './components/bloque/bloque.component';
+import { TeoriaComponent } from './components/teoria/teoria.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/bloque/1', pathMatch: 'full' }, // Si se entra directamente al localhost de Angular te redirige al bloque 1, siempre y cuando este vacio.
-    { path: 'bloque/:id', component: BloqueComponent } // Cuando se especifique el id en la URL, se redirigira a BloqueComponent.
+  { path: '', component: HomeComponent },  // Página de inicio
+  { path: 'bloque/:id/teoria', component: TeoriaComponent },  // Teoría
+  { path: 'bloque/:id/ejercicio', component: BloqueComponent },  // Ejercicio
+  { path: '**', redirectTo: '' }  // Cualquier otra ruta → inicio
 ];

@@ -1,0 +1,128 @@
+.navbar {
+  background: linear-gradient(90deg, #751457,#af1261,#e71f5e);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.navbar-brand a {
+  text-decoration: none;
+}
+
+.navbar-brand h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.navbar-brand h2:hover {
+  transform: scale(1.05);
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  position: relative;
+  margin: 0;
+}
+
+.bloque-nombre {
+  display: block;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.navbar-item:hover .bloque-nombre {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Desplegable */
+.desplegable {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  min-width: 220px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.desplegable-item {
+  display: block;
+  color: #2C3E50;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  transition: all 0.2s;
+  font-weight: 500;
+  border-bottom: 1px solid #ECF0F1;
+}
+
+.desplegable-item:last-child {
+  border-bottom: none;
+}
+
+.desplegable-item:hover {
+  background: linear-gradient(90deg, #751457,#af1261,#e71f5e); 
+  color: white;
+}
+
+.desplegable-item.active {
+  background: linear-gradient(135deg, pink 0%,white 100%);
+  color: black;
+  font-weight: 600;
+}
+
+.navbar-profile {
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.navbar-profile:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

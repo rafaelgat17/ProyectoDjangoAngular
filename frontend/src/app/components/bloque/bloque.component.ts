@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CircuitosService } from '../../services/circuitos.service';
+import { CircuitViewerComponent } from '../circuit-viewer/circuit-viewer.component';
 
 // OnInit: ngOnInit() se ejecuta cuando el componente se inicializa.
 // FormsModule: necesario para usar [(ngModel)].
@@ -12,7 +13,7 @@ import { CircuitosService } from '../../services/circuitos.service';
 @Component({
   selector: 'app-bloque',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CircuitViewerComponent],
   templateUrl: './bloque.component.html',
   styleUrl: './bloque.component.css'
 })

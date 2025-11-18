@@ -1,0 +1,123 @@
+.bloque-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: #1c1c1c;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    border-bottom: 4px solid red;
+    padding-bottom: 1rem;
+}
+
+h2 {
+    color: #1c1c1c;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.teoria-section-h2 {
+    color: white;
+}
+
+.teoria-section {
+    background: linear-gradient(90deg, #751457,#af1261,#e71f5e);                                        
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    color: white;
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+.teoria-section p {
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.ejercicio-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.controles {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #c3cfe2;
+    border-radius: 10px;
+    border: 2px solid #E0E6ED;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.control-group label {
+    font-weight: 600;
+    color: #1c1c1c;
+    font-size: 0.95rem;
+}
+
+.control-group input {
+    padding: 0.75rem;
+    border: 2px solid #1c1c1c;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s;
+    background: white;
+}
+
+
+.btn-generar {
+    background: linear-gradient(90deg, #751457,#af1261,#e71f5e);   
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+
+.resultado {
+    margin-top: 2rem;
+}
+
+.resultado h3 {
+    color: green;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5 rem;
+}
+
+.imagen-circuito h4 {
+    color: #1c1c1c;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
