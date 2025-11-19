@@ -1,38 +1,30 @@
     <nav class="navbar">
     <div class="navbar-content">
         <div class="navbar-brand">
-        <a [routerLink]="['/']">
-            <h2>Universidad de Sevilla</h2>
-        </a>
+            <a [routerLink]="['/']">
+                <h2>Universidad de Sevilla</h2>
+            </a>
         </div>
         
         <ul class="navbar-menu">
-        <li *ngFor="let bloque of bloques" 
-            class="navbar-item"
-            (mouseenter)="abrirDesplegable(bloque.id)"
-            (mouseleave)="cerrarDesplegable()">
-            
-            <!-- Nombre del bloque -->
-            <span class="bloque-nombre">{{ bloque.nombre }}</span>
-            
-            <!-- Desplegable -->
-            <div class="desplegable" *ngIf="estaAbierto(bloque.id)">
-            <a [routerLink]="['/bloque', bloque.id, 'teoria']" 
-                routerLinkActive="active"
-                class="desplegable-item">
-                Teoría Bloque {{ bloque.id }}
-            </a>
-            <a [routerLink]="['/bloque', bloque.id, 'ejercicio']" 
-                routerLinkActive="active"
-                class="desplegable-item">
-                Ejercicio Bloque {{ bloque.id }}
-            </a>
-            </div>
-        </li>
+            <li *ngFor="let bloque of bloques" class="navbar-item" (mouseenter)="abrirDesplegable(bloque.id)" (mouseleave)="cerrarDesplegable()">
+                
+                <span class="bloque-nombre">{{ bloque.nombre }}</span>
+                
+                <div class="desplegable" *ngIf="estaAbierto(bloque.id)">
+                    <a [routerLink]="['/bloque', bloque.id, 'teoria']" routerLinkActive="active" class="desplegable-item">
+                        Teoría Bloque {{ bloque.id }}
+                    </a>
+                    <a [routerLink]="['/bloque', bloque.id, 'ejercicio']" routerLinkActive="active" class="desplegable-item">
+                        Ejercicio Bloque {{ bloque.id }}
+                    </a>
+                </div>
+            </li>
         </ul>
         
         <div class="navbar-profile">
-        <span>Perfil</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
         </div>
+
     </div>
     </nav>

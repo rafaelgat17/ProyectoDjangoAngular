@@ -130,84 +130,149 @@ class circuit():
         
         
     def draw(self):
-    
+
+        # Crear posiciones en cuadrícula ordenada
         pos = {}
-        
-        # Se crea un diccionario vacio para la cuadricula
-        
         for node in self.nodes:
             idx = int(node[1])  # fila
             jdx = int(node[2])  # columna
             pos[node] = (jdx, -idx)
-            
-            # Posicionar en cuadrícula: x = columna, y = fila invertida
-        
-        # Crear etiquetas para las aristas con el tipo de componente y su valor
-        
-        edge_labels = {}
-        
-        # Se crea un diccionario vacio para las aristas
-        for e in self.edges:
-            element = self.G[e[0]][e[1]]['element']
-            string_val = self.G[e[0]][e[1]].get('string')
-            
-            # self.0 seria el grafo
-            # e[0] el nodo origen
-            # e[1] el nodo destino
-            # 'element' el nombre del componente 
-            
-            # Se pone string porque en el caso de shortcircuit y opencircuit no tienen valor y daria error
-            
-            if string_val:
-                edge_labels[(e[0], e[1])] = f"{element}\n{string_val}"
-            else:
-                edge_labels[(e[0], e[1])] = element
-                
-            # Entonces si la etiqueta tiene un valor se pone al lado del nombre del elemento, y si no, solo sale el nombre de la etiqueta
-
-
+    
+        # Determinar dimensiones del circuito
         rows = max([int(node[1]) for node in self.nodes]) + 1
         cols = max([int(node[2]) for node in self.nodes]) + 1
-
-        # Dimensiones del circuito
-
-        plt.figure(figsize=(8, 5))
+    
+        # Crear figura
+        fig, ax = plt.subplots(figsize=(14, 10))
+        ax.set_facecolor('#FAFAFA')
+    
+        # Símbolos visuales para cada tipo de componente
+        component_symbols = {
+            'resistor': '▬▬▬',
+            'capacitor': '╫',
+            'inductor': '∿∿∿',
+            'v_source': '⊕',
+            'c_source': '⊙',
+            'shortcircuit': '━━━',
+            'opencircuit': '╌╌╌'
+        }
+    
+        # PASO 1: Dibujar todas las líneas/aristas primero (capa inferior)
+        for e in self.edges:
+            n1, n2 = e[0], e[1]
+            x1, y1 = pos[n1]
+            x2, y2 = pos[n2]
         
-        nx.draw_networkx_nodes(
-            self.G, pos,
-            node_color='lightgreen',
-            node_size=800,
-            edgecolors='black',
-            linewidths=2
-        )
+            element = self.G[n1][n2]['element']
+            
+            # Línea de conexión
+            if element == 'opencircuit':
+                ax.plot([x1, x2], [y1, y2], color='#BDC3C7', linewidth=2, 
+                    linestyle=':', alpha=0.6, zorder=1)
+            else:
+                ax.plot([x1, x2], [y1, y2], color='#95A5A6', linewidth=3, 
+                    solid_capstyle='round', zorder=1)
+    
+        # PASO 2: Dibujar símbolos de componentes (capa media)
+        for e in self.edges:
+            n1, n2 = e[0], e[1]
+            x1, y1 = pos[n1]
+            x2, y2 = pos[n2]
+            
+            element = self.G[n1][n2]['element']
+            
+            # Calcular punto medio
+            cx, cy = (x1 + x2) / 2, (y1 + y2) / 2
         
-        nx.draw_networkx_labels(
-            self.G, pos,
-            font_size=10,
-            font_weight='bold'
-        )
+            # Símbolo del componente
+            symbol = component_symbols.get(element, '─')
+            
+            # Dibujar símbolo con fondo
+            ax.text(cx, cy, symbol, 
+                ha='center', va='center',
+                fontsize=18, fontweight='bold',
+                color='#2C3E50',
+                bbox=dict(boxstyle='round,pad=0.5', 
+                            facecolor='white', 
+                            edgecolor='#34495E',
+                            linewidth=2.5,
+                            alpha=0.95),
+                zorder=3)
+    
+        # PASO 3: Dibujar etiquetas con SOLO UNIDADES (horizontal siempre)
+        for e in self.edges:
+            n1, n2 = e[0], e[1]
+            x1, y1 = pos[n1]
+            x2, y2 = pos[n2]
         
-        nx.draw_networkx_edges(
-            self.G, pos,
-            arrows=True,
-            arrowstyle='-',
-            arrowsize=20,
-            edge_color='darkgray',
-            width=2,
-            connectionstyle='arc3,rad=0'
-        )
+            string_val = self.G[n1][n2].get('string')
         
-        nx.draw_networkx_edge_labels(
-            self.G, pos,
-            edge_labels=edge_labels,
-            font_color='black',
-            font_size=8,
-            bbox=dict(boxstyle='round,pad=0.2', facecolor='white', edgecolor='gray', alpha=1)
-        )
+            if string_val:  # Solo si tiene valor
+                # Calcular punto medio
+                cx, cy = (x1 + x2) / 2, (y1 + y2) / 2
+                
+                # Determinar posición de la etiqueta según orientación
+                if x1 == x2:  # Conexión VERTICAL
+                    label_x = cx + 0.55  # A la derecha
+                    label_y = cy
+                else:  # Conexión HORIZONTAL
+                    label_x = cx
+                    label_y = cy - 0.4  # Debajo
+            
+                # Dibujar etiqueta (SIEMPRE HORIZONTAL)
+                ax.text(label_x, label_y, string_val,
+                    ha='center', va='center',
+                    fontsize=9, fontweight='bold',
+                    color='#E74C3C',
+                    rotation=0,  # SIEMPRE HORIZONTAL
+                    bbox=dict(boxstyle='round,pad=0.35',
+                                facecolor='#FEF5E7',
+                                edgecolor='#F39C12',
+                                linewidth=1.5,
+                                alpha=0.95),
+                    zorder=4)
+    
+        # PASO 4: Dibujar nodos (capa superior)
+        for node, (x, y) in pos.items():
+            # Círculo del nodo
+            circle = plt.Circle((x, y), 0.18, 
+                            color='#3498DB', 
+                            edgecolor='#2C3E50', 
+                            linewidth=3, 
+                            zorder=5)
+            ax.add_patch(circle)
+            
+            # Etiqueta del nodo
+            ax.text(x, y, node, 
+                ha='center', va='center', 
+                fontsize=10, fontweight='bold', 
+                color='white', 
+                zorder=6)
+    
+        # PASO 5: Configuración final de la figura
+        ax.set_aspect('equal')
         
-        plt.title(f'Circuito {rows}x{cols}', fontsize=14, fontweight='bold')
-        plt.axis('equal')
-        plt.grid(True, alpha=0.3, linestyle='--')
+        # Grid sutil
+        ax.grid(True, alpha=0.2, linestyle='--', color='#BDC3C7', linewidth=0.5)
+        
+        # Título
+        ax.set_title(f'Circuito Eléctrico {rows}×{cols}', 
+                    fontsize=20, fontweight='bold', 
+                    color='#2C3E50', 
+                    pad=25,
+                    fontfamily='sans-serif')
+        
+        # Ajustar límites con margen
+        all_x = [pos[n][0] for n in self.nodes]
+        all_y = [pos[n][1] for n in self.nodes]
+        margin = 1.0
+        ax.set_xlim(min(all_x) - margin, max(all_x) + margin)
+        ax.set_ylim(min(all_y) - margin, max(all_y) + margin)
+        
+        # Ocultar ejes
+        ax.axis('off')
+        
+        # Ajustar layout
         plt.tight_layout()
     
     

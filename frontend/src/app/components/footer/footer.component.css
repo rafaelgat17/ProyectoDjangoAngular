@@ -1,0 +1,30 @@
+.footer-container {
+    background: linear-gradient(90deg, #751457,#af1261,#e71f5e);
+    width: auto;
+    padding: 1rem;
+}
+
+.principal {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 100px;
+}
+
+.secundario {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: darkgray;
+    justify-content: center;
+    text-align: center;
+    list-style: none;
+}
+
+.li-principal {
+    color: white;
+}
+
+.separacion {
+    margin-bottom: 1rem;
+}
