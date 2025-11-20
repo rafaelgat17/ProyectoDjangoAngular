@@ -116,9 +116,9 @@ def generar_circuito(request):
             target_col = int(target[2])
             
             if source_row == target_row:
-                orientation = 'horizontal'
-            else:
                 orientation = 'vertical'
+            else:
+                orientation = 'horizontal'
 
             # Esto determina si los nodos van:
             # Seguidos (vertical)

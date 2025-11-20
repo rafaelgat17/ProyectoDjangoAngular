@@ -21,7 +21,7 @@ interface Componente {
 @Component({
   selector: 'app-circuit-viewer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule], 
   templateUrl: './circuit-viewer.component.html',
   styleUrl: './circuit-viewer.component.css'
 })
@@ -125,31 +125,33 @@ export class CircuitViewerComponent implements OnChanges {
     }
   }
 
-  // Obtener color según el tipo de componente
-  getComponentColor(type: string): string {
-    const colors: {[key: string]: string} = {
-      'resistor': '#E74C3C',
-      'capacitor': '#3498DB',
-      'inductor': '#9B59B6',
-      'v_source': '#F39C12',
-      'c_source': '#1ABC9C',
-      'shortcircuit': '#95A5A6',
-      'opencircuit': '#BDC3C7'
-    };
-    return colors[type] || '#34495E';
-  }
+// Obtener la ruta del SVG del componente
+getComponentSvgPath(type: string): string {
+  const paths: {[key: string]: string} = {
+    'resistor': 'assets/components/resistor.png',
+    'capacitor': 'assets/components/capacitor.png',
+    'inductor': 'assets/components/inductor.png',
+    'v_source': 'assets/components/v_source.png',
+    'c_source': 'assets/components/c_source.png',
+    'shortcircuit': 'assets/components/shortcircuit.png',
+    'opencircuit': 'assets/components/opencircuit.png'
+  };
+  return paths[type] || 'assets/components/resistor.png';
+}
 
-  // Obtener símbolo del componente (por ahora texto, luego SVG)
-  getComponentSymbol(type: string): string {
-    const symbols: {[key: string]: string} = {
-      'resistor': 'R',
-      'capacitor': 'C',
-      'inductor': 'L',
-      'v_source': 'V',
-      'c_source': 'I',
-      'shortcircuit': '—',
-      'opencircuit': '◦'
-    };
-    return symbols[type] || '?';
-  }
+// Obtener la ruta del SVG del nodo según su tipo
+getNodeSvgPath(type: string): string {
+  const paths: {[key: string]: string} = {
+    'corner-top-left': 'assets/nodes/corner-top-left.png',
+    'corner-top-right': 'assets/nodes/corner-top-right.png',
+    'corner-bottom-left': 'assets/nodes/corner-bottom-left.png',
+    'corner-bottom-right': 'assets/nodes/corner-bottom-right.png',
+    'edge-top': 'assets/nodes/edge-top.png',
+    'edge-bottom': 'assets/nodes/edge-bottom.png',
+    'edge-left': 'assets/nodes/edge-left.png',
+    'edge-right': 'assets/nodes/edge-right.png',
+    'center': 'assets/nodes/center.png'
+  };
+  return paths[type] || 'assets/nodes/center.png';
+}
 } 

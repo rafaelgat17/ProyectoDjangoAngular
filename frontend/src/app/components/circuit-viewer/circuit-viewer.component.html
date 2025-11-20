@@ -11,41 +11,33 @@
               [attr.y1]="getNodeY(sourceNode.row)"
               [attr.x2]="getNodeX(targetNode.col)"
               [attr.y2]="getNodeY(targetNode.row)"
-              [attr.stroke]="getComponentColor(comp.type)"
-              stroke-width="4"
+              [attr.stroke]="'yellow'"
+              stroke-width="3"
               stroke-linecap="round"
-              opacity="0.3"/>
+              opacity="0.5"/>
           </ng-container>
         </ng-container>
       </ng-container>
     </g>
     
     <!-- ===== CAPA 2: COMPONENTES (medio) ===== -->
-    <g class="components">
-      <ng-container *ngFor="let comp of componentes">
-        <ng-container *ngIf="comp.type !== 'opencircuit'">
-          <!-- Círculo con el símbolo del componente -->
-          <circle
-            [attr.cx]="getComponentMidPoint(comp).x"
-            [attr.cy]="getComponentMidPoint(comp).y"
-            r="30"
-            [attr.fill]="getComponentColor(comp.type)"
-            stroke="black"
-            stroke-width="3"
-            class="component-circle"/>
-          
-          <!-- Símbolo del componente (letra) -->
-          <text
-            [attr.x]="getComponentMidPoint(comp).x"
-            [attr.y]="getComponentMidPoint(comp).y"
-            text-anchor="middle"
-            dominant-baseline="middle"
-            class="component-symbol">
-            {{ getComponentSymbol(comp.type) }}
-          </text>
-        </ng-container>
-      </ng-container>
-    </g>
+<g class="components">
+  <ng-container *ngFor="let comp of componentes">
+    <ng-container *ngIf="comp.type !== 'opencircuit'">
+      <!-- Imagen SVG del componente -->
+      <image
+        [attr.xlink:href]="getComponentSvgPath(comp.type)"
+        [attr.x]="getComponentMidPoint(comp).x - 40"
+        [attr.y]="getComponentMidPoint(comp).y - 40"
+        width="80"
+        height="80"
+        [attr.transform]="'rotate(' + getComponentRotation(comp) + ' ' + 
+                        getComponentMidPoint(comp).x + ' ' + 
+                        getComponentMidPoint(comp).y + ')'"
+        class="component-image"/>
+    </ng-container>
+  </ng-container>
+</g>
     
     <!-- ===== CAPA 3: ETIQUETAS DE VALORES ===== -->
     <g class="labels">
@@ -79,15 +71,14 @@
     <!-- ===== CAPA 4: NODOS (encima de todo) ===== -->
     <g class="nodes">
       <ng-container *ngFor="let nodo of nodos">
-        <!-- Círculo del nodo -->
-        <circle
-          [attr.cx]="getNodeX(nodo.col)"
-          [attr.cy]="getNodeY(nodo.row)"
-          [attr.r]="NODE_RADIUS"
-          fill="#2C3E50"
-          stroke="black"
-          stroke-width="2"
-          class="node-circle"/>
+        <!-- Imagen SVG del nodo (esquina, borde o centro) -->
+        <image
+          [attr.xlink:href]="getNodeSvgPath(nodo.type)"
+          [attr.x]="getNodeX(nodo.col) - 30"
+          [attr.y]="getNodeY(nodo.row) - 30"
+          width="60"
+          height="60"
+          class="node-image"/>
         
         <!-- Etiqueta del nodo (N00, N01, etc.) -->
         <text
@@ -100,7 +91,7 @@
         </text>
       </ng-container>
     </g>
-    
+      
   </svg>
 </div>
 
