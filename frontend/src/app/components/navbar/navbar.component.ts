@@ -18,20 +18,16 @@ export class NavbarComponent {
     { id: 5, nombre: 'Bloque 5' }
   ];
 
-  // Variable para controlar qué desplegable está abierto
   bloqueAbierto: number | null = null;
 
-  // Abrir desplegable
   abrirDesplegable(bloqueId: number) {
     this.bloqueAbierto = bloqueId;
   }
 
-  // Cerrar desplegable
   cerrarDesplegable() {
     this.bloqueAbierto = null;
   }
 
-  // Verificar si un desplegable está abierto
   estaAbierto(bloqueId: number): boolean {
     return this.bloqueAbierto === bloqueId;
   }

@@ -15,7 +15,6 @@ export class TeoriaComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    // Capturar el ID del bloque de la URL
     this.route.params.subscribe(params => {
       this.bloqueId = params['id'];
     });

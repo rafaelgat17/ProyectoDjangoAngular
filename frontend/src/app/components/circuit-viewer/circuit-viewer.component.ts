@@ -26,58 +26,47 @@ interface Componente {
   styleUrl: './circuit-viewer.component.css'
 })
 export class CircuitViewerComponent implements OnChanges {
-  @Input() circuitData: any;  // Datos que llegan del componente padre
+  @Input() circuitData: any;
   
-  // Configuración del grid
-  readonly CELL_SIZE = 200;  // Tamaño de cada celda en píxeles
-  readonly NODE_RADIUS = 18;  // Radio de los círculos de nodos
+  readonly CELL_SIZE = 200;
+  readonly NODE_RADIUS = 18;
   
-  // Tamaño del SVG
   svgWidth = 0;
   svgHeight = 0;
   
-  // Datos procesados
   nodos: Nodo[] = [];
   componentes: Componente[] = [];
 
-  // Este método se ejecuta cada vez que cambia circuitData
   ngOnChanges(changes: SimpleChanges) {
     if (changes['circuitData'] && this.circuitData) {
       this.processCircuitData();
     }
   }
 
-  // Procesar los datos del circuito
   processCircuitData() {
     this.nodos = this.circuitData.nodos || [];
     this.componentes = this.circuitData.componentes || [];
     
-    // Calcular tamaño del SVG
     const rows = this.circuitData.rows || 2;
     const cols = this.circuitData.cols || 3;
     
-    // Añadir margen para etiquetas externas
     const margin = 80;
     this.svgWidth = (cols + 1) * this.CELL_SIZE + margin * 2;
     this.svgHeight = (rows + 1) * this.CELL_SIZE + margin * 2;
   }
 
-  // Calcular posición X de un nodo
   getNodeX(col: number): number {
     return 80 + (col + 0.5) * this.CELL_SIZE;
   }
 
-  // Calcular posición Y de un nodo
   getNodeY(row: number): number {
     return 80 + (row + 0.5) * this.CELL_SIZE;
   }
 
-  // Obtener el nodo por su ID
   getNode(nodeId: string): Nodo | undefined {
     return this.nodos.find(n => n.id === nodeId);
   }
 
-  // Calcular punto medio de un componente
   getComponentMidPoint(comp: Componente): {x: number, y: number} {
     const sourceNode = this.getNode(comp.source);
     const targetNode = this.getNode(comp.target);
@@ -97,12 +86,10 @@ export class CircuitViewerComponent implements OnChanges {
     };
   }
 
-  // Calcular rotación del componente (0° o 90°)
   getComponentRotation(comp: Componente): number {
     return comp.orientation === 'vertical' ? 90 : 0;
   }
 
-  // Calcular posición de la etiqueta
   getLabelPosition(comp: Componente): {x: number, y: number} {
     const mid = this.getComponentMidPoint(comp);
     const offset = 40;
@@ -125,7 +112,6 @@ export class CircuitViewerComponent implements OnChanges {
     }
   }
 
-// Obtener la ruta del SVG del componente
 getComponentSvgPath(type: string): string {
   const paths: {[key: string]: string} = {
     'resistor': 'assets/components/resistor.png',
@@ -139,7 +125,6 @@ getComponentSvgPath(type: string): string {
   return paths[type] || 'assets/components/resistor.png';
 }
 
-// Obtener la ruta del SVG del nodo según su tipo
 getNodeSvgPath(type: string): string {
   const paths: {[key: string]: string} = {
     'corner-top-left': 'assets/nodes/corner-top-left.png',

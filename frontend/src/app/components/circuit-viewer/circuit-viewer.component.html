@@ -1,7 +1,6 @@
 <div class="circuit-container" *ngIf="circuitData">
   <svg [attr.width]="svgWidth" [attr.height]="svgHeight" class="circuit-svg">
     
-    <!-- ===== CAPA 1: LÍNEAS DE CONEXIÓN (fondo) ===== -->
     <g class="connections">
       <ng-container *ngFor="let comp of componentes">
         <ng-container *ngIf="getNode(comp.source) as sourceNode">
@@ -20,11 +19,9 @@
       </ng-container>
     </g>
     
-    <!-- ===== CAPA 2: COMPONENTES (medio) ===== -->
 <g class="components">
   <ng-container *ngFor="let comp of componentes">
     <ng-container *ngIf="comp.type !== 'opencircuit'">
-      <!-- Imagen SVG del componente -->
       <image
         [attr.xlink:href]="getComponentSvgPath(comp.type)"
         [attr.x]="getComponentMidPoint(comp).x - 40"
@@ -39,11 +36,9 @@
   </ng-container>
 </g>
     
-    <!-- ===== CAPA 3: ETIQUETAS DE VALORES ===== -->
     <g class="labels">
       <ng-container *ngFor="let comp of componentes">
         <ng-container *ngIf="comp.value">
-          <!-- Fondo de la etiqueta -->
           <rect
             [attr.x]="getLabelPosition(comp).x - 50"
             [attr.y]="getLabelPosition(comp).y - 16"
@@ -55,7 +50,6 @@
             rx="6"
             class="label-bg"/>
           
-          <!-- Texto del valor -->
           <text
             [attr.x]="getLabelPosition(comp).x"
             [attr.y]="getLabelPosition(comp).y"
@@ -68,10 +62,8 @@
       </ng-container>
     </g>
     
-    <!-- ===== CAPA 4: NODOS (encima de todo) ===== -->
     <g class="nodes">
       <ng-container *ngFor="let nodo of nodos">
-        <!-- Imagen SVG del nodo (esquina, borde o centro) -->
         <image
           [attr.xlink:href]="getNodeSvgPath(nodo.type)"
           [attr.x]="getNodeX(nodo.col) - 30"
@@ -79,23 +71,13 @@
           width="60"
           height="60"
           class="node-image"/>
-        
-        <!-- Etiqueta del nodo (N00, N01, etc.) -->
-        <text
-          [attr.x]="getNodeX(nodo.col)"
-          [attr.y]="getNodeY(nodo.row)"
-          text-anchor="middle"
-          dominant-baseline="middle"
-          class="node-label">
-          {{ nodo.id }}
-        </text>
+
       </ng-container>
     </g>
       
   </svg>
 </div>
 
-<!-- Mensaje si no hay datos -->
 <div *ngIf="!circuitData" class="no-data">
   <p>No hay datos del circuito para mostrar</p>
 </div>
