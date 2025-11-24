@@ -47,8 +47,12 @@ export class CircuitViewerComponent implements OnChanges {
     this.nodos = this.circuitData.nodos || [];
     this.componentes = this.circuitData.componentes || [];
     
+    // Si lo de la izquierda es falsy usa lo de la derecha
+
     const rows = this.circuitData.rows || 2;
     const cols = this.circuitData.cols || 3;
+
+    // Si no se cambian las dimensiones se usan las de por defecto
     
     const margin = 80;
     this.svgWidth = (cols + 1) * this.CELL_SIZE + margin * 2;
@@ -63,22 +67,31 @@ export class CircuitViewerComponent implements OnChanges {
     return 80 + (row + 0.5) * this.CELL_SIZE;
   }
 
+  // 80 es el margen inicial
+  // col numero de la columna (0, 1, 2)
+  // 0.5 para centrar
+  // this.CELL_SIZE tamaño de la celda
+
   getNode(nodeId: string): Nodo | undefined {
     return this.nodos.find(n => n.id === nodeId);
   }
+
+  // Busca un nodo en el array por su ID
 
   getComponentMidPoint(comp: Componente): {x: number, y: number} {
     const sourceNode = this.getNode(comp.source);
     const targetNode = this.getNode(comp.target);
     
+    // Calcula el punto medio entre dos nodos para colocar el componente ahí.
+    
     if (!sourceNode || !targetNode) {
       return {x: 0, y: 0};
     }
     
-    const x1 = this.getNodeX(sourceNode.col);
-    const y1 = this.getNodeY(sourceNode.row);
-    const x2 = this.getNodeX(targetNode.col);
-    const y2 = this.getNodeY(targetNode.row);
+    const x1 = this.getNodeX(sourceNode.col); // posicion x del nodo origen
+    const y1 = this.getNodeY(sourceNode.row); // posicion y del nodo origen
+    const x2 = this.getNodeX(targetNode.col); // posicion x del nodo destino
+    const y2 = this.getNodeY(targetNode.row); // posicion y dle nodo destino
     
     return {
       x: (x1 + x2) / 2,
@@ -90,9 +103,13 @@ export class CircuitViewerComponent implements OnChanges {
     return comp.orientation === 'vertical' ? 90 : 0;
   }
 
+  // Devuelve el angulo de rotacion para el componente
+
   getLabelPosition(comp: Componente): {x: number, y: number} {
     const mid = this.getComponentMidPoint(comp);
+    // se obtiene el centro del componente
     const offset = 40;
+    // distancia en pixeles desde el componente hasta la etiqueta
     
     switch(comp.labelPosition) {
       case 'outside-top':
@@ -111,6 +128,8 @@ export class CircuitViewerComponent implements OnChanges {
         return {x: mid.x + offset, y: mid.y};
     }
   }
+
+  // Calcula donde poner la etiqueta con el valor
 
 getComponentSvgPath(type: string): string {
   const paths: {[key: string]: string} = {
