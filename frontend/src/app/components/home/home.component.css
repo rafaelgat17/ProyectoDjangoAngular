@@ -19,7 +19,7 @@
 .welcome-card h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  background: linear-gradient(90deg, #751457,#af1261,#e71f5e);
+  background: linear-gradient(90deg, #000000 0%, #25255e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -31,37 +31,3 @@
   margin-bottom: 3rem;
 }
 
-.instructions {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.instruction-item {
-  padding: 2rem;
-  background: gainsboro;
-  border-radius: 12px;
-  transition: transform 0.3s;
-}
-
-.instruction-item:hover {
-  transform: translateY(-10px);
-}
-
-.instruction-item .icon {
-  font-size: 3rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.instruction-item h3 {
-  color: #1c1c1c;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.instruction-item p {
-  color: grey;
-  font-size: 1rem;
-}

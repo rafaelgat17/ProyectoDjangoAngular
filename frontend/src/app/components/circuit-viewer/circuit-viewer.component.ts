@@ -1,6 +1,12 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Input es un decorador que permite recibir datos del componente padre
+// OnChanges se utilizara para detectar cambios en los datos de entrada
+// SimpleChanges es un tipo que contiene informacion acerca de que datos exactos son los que cambiaron
+
+// CommonModule da acceso a Angular como *ngIf, *ngFor y otras mas
+
 interface Nodo {
   id: string;
   row: number;
@@ -18,6 +24,8 @@ interface Componente {
   labelPosition: string;
 }
 
+// Aqui se definen la estructura de los objetos Nodo y Componente
+
 @Component({
   selector: 'app-circuit-viewer',
   standalone: true,
@@ -25,23 +33,42 @@ interface Componente {
   templateUrl: './circuit-viewer.component.html',
   styleUrl: './circuit-viewer.component.css'
 })
+
+// Datos del componente
+
 export class CircuitViewerComponent implements OnChanges {
   @Input() circuitData: any;
+
+  // Recibe los datos del padre
   
   readonly CELL_SIZE = 200;
   readonly NODE_RADIUS = 18;
+
+  // readonly es una constante, no se puede editar
+  // CELL_SIZE representaria el tamaño de cada celda de la cuadricula en px
   
-  svgWidth = 0;
-  svgHeight = 0;
+  imgWidth = 0;
+  imgHeight = 0;
+
+  // tamaño de la imagen el cual se calcula despues
   
   nodos: Nodo[] = [];
   componentes: Componente[] = [];
+
+  // son arrays vacios que contendran los nodos y los componentes
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['circuitData'] && this.circuitData) {
       this.processCircuitData();
     }
+    
+    // Si cambio circuitData Y si circuitData tiene valor entonces se procesan los datos
+
   }
+
+  // ngOnInit() se ejecuta una vez
+  // ngOnChanges() se ejecuta cada vez que @Input cambia
+  // ngOnDestroy() se ejecuta cada vez que se destruye el componente
 
   processCircuitData() {
     this.nodos = this.circuitData.nodos || [];
@@ -55,8 +82,9 @@ export class CircuitViewerComponent implements OnChanges {
     // Si no se cambian las dimensiones se usan las de por defecto
     
     const margin = 80;
-    this.svgWidth = (cols + 1) * this.CELL_SIZE + margin * 2;
-    this.svgHeight = (rows + 1) * this.CELL_SIZE + margin * 2;
+    this.imgWidth = (cols + 1) * this.CELL_SIZE + margin * 2;
+    this.imgHeight = (rows + 1) * this.CELL_SIZE + margin * 2;
+
   }
 
   getNodeX(col: number): number {
@@ -87,6 +115,8 @@ export class CircuitViewerComponent implements OnChanges {
     if (!sourceNode || !targetNode) {
       return {x: 0, y: 0};
     }
+
+    // si sourceNode o targetNode es falsy...
     
     const x1 = this.getNodeX(sourceNode.col); // posicion x del nodo origen
     const y1 = this.getNodeY(sourceNode.row); // posicion y del nodo origen

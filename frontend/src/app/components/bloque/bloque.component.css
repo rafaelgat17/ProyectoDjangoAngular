@@ -10,7 +10,7 @@ h1 {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    border-bottom: 4px solid red;
+    border-bottom: 4px solid #004687;
     padding-bottom: 1rem;
 }
 
@@ -22,24 +22,6 @@ h2 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-.teoria-section-h2 {
-    color: white;
-}
-
-.teoria-section {
-    background: linear-gradient(90deg, #751457,#af1261,#e71f5e);
-    padding: 2rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    color: white;
-    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
-}
-
-.teoria-section p {
-    line-height: 1.8;
-    font-size: 1.05rem;
 }
 
 .ejercicio-section {
@@ -55,7 +37,7 @@ h2 {
     gap: 2rem;
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: #c3cfe2;
+    background-color: rgba(161, 161, 237, 0.5);
     border-radius: 10px;
     border: 2px solid #E0E6ED;
 }
@@ -86,7 +68,7 @@ h2 {
 
 
 .btn-generar {
-    background: linear-gradient(90deg, #751457,#af1261,#e71f5e);   
+    background: linear-gradient(90deg, #000000 0%, #25255e 100%); 
     color: white;
     border: none;
     padding: 1rem 2.5rem;

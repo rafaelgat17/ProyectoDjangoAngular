@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TeoriaComponent implements OnInit {
   bloqueId: string = '';
-
+  
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {

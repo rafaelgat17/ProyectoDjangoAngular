@@ -7,5 +7,5 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },  // Página de inicio
   { path: 'bloque/:id/teoria', component: TeoriaComponent },  // Teoría
   { path: 'bloque/:id/ejercicio', component: BloqueComponent },  // Ejercicio
-  { path: '**', redirectTo: '' }  // Cualquier otra ruta → inicio
+  { path: '**', redirectTo: '' }
 ];

@@ -1,5 +1,5 @@
 .navbar {
-  background: linear-gradient(90deg, #751457,#af1261,#e71f5e);
+  background: linear-gradient(90deg, #ffffff 29%, #a1a1ed 59%, #25255e 100%);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   padding: 0;
   position: sticky;
@@ -8,8 +8,13 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.logo {
+  height: 50px;
+  width: auto;
+}
+
 .navbar-content {
-  max-width: 1400px;
+  max-width: auto;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -19,20 +24,6 @@
 
 .navbar-brand a {
   text-decoration: none;
-}
-
-.navbar-brand h2 {
-  margin: 0;
-  color: white;
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.navbar-brand h2:hover {
-  transform: scale(1.05);
 }
 
 .navbar-menu {
@@ -82,7 +73,7 @@
   text-decoration: none;
   padding: 1rem 1.5rem;
   font-weight: 500;
-  border-bottom: 1px solid #ECF0F1;
+  border-bottom: 1px solid white;
 }
 
 .desplegable-item:last-child {
@@ -90,12 +81,12 @@
 }
 
 .desplegable-item:hover {
-  background: linear-gradient(90deg, #751457,#af1261,#e71f5e); 
+  background: linear-gradient(90deg, #000000 0%, #25255e 100%);
   color: white;
 }
 
 .desplegable-item.active {
-  background: linear-gradient(135deg, pink 0%,white 100%);
+  background: linear-gradient(135deg, lightblue 0%,white 100%);
   color: black;
   font-weight: 600;
 }

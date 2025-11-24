@@ -1,5 +1,5 @@
 .footer-container {
-    background: linear-gradient(90deg, #751457,#af1261,#e71f5e);
+    background: linear-gradient(90deg, #000000 0%, #25255e 100%);
     width: auto;
     padding: 1rem;
 }
@@ -23,6 +23,7 @@
 
 .li-principal {
     color: white;
+    font-weight: 500;
 }
 
 .separacion {

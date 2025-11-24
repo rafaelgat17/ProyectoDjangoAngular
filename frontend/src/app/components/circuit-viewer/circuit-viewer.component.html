@@ -1,83 +1,41 @@
 <div class="circuit-container" *ngIf="circuitData">
-  <svg [attr.width]="svgWidth" [attr.height]="svgHeight" class="circuit-svg">
+  <svg [attr.width]="imgWidth" [attr.height]="imgHeight" class="circuit-svg">
     
-    <g class="connections">
-      <ng-container *ngFor="let comp of componentes">
-        <ng-container *ngIf="getNode(comp.source) as sourceNode">
-          <ng-container *ngIf="getNode(comp.target) as targetNode">
-            <line
-              [attr.x1]="getNodeX(sourceNode.col)"
-              [attr.y1]="getNodeY(sourceNode.row)"
-              [attr.x2]="getNodeX(targetNode.col)"
-              [attr.y2]="getNodeY(targetNode.row)"
-              [attr.stroke]="'yellow'"
-              stroke-width="3"
-              stroke-linecap="round"
-              opacity="0.5"/>
-          </ng-container>
+  <g class="connections">
+    <ng-container *ngFor="let comp of componentes">
+      <ng-container *ngIf="getNode(comp.source) as sourceNode">
+        <ng-container *ngIf="getNode(comp.target) as targetNode">
+          <line [attr.x1]="getNodeX(sourceNode.col)" [attr.y1]="getNodeY(sourceNode.row)" [attr.x2]="getNodeX(targetNode.col)" [attr.y2]="getNodeY(targetNode.row)" [attr.stroke]="'#1E90FF'" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
         </ng-container>
       </ng-container>
-    </g>
-    
-<g class="components">
-  <ng-container *ngFor="let comp of componentes">
-    <ng-container *ngIf="comp.type !== 'opencircuit'">
-      <image
-        [attr.xlink:href]="getComponentSvgPath(comp.type)"
-        [attr.x]="getComponentMidPoint(comp).x - 40"
-        [attr.y]="getComponentMidPoint(comp).y - 40"
-        width="80"
-        height="80"
-        [attr.transform]="'rotate(' + getComponentRotation(comp) + ' ' + 
-                        getComponentMidPoint(comp).x + ' ' + 
-                        getComponentMidPoint(comp).y + ')'"
-        class="component-image"/>
     </ng-container>
-  </ng-container>
-</g>
-    
-    <g class="labels">
-      <ng-container *ngFor="let comp of componentes">
-        <ng-container *ngIf="comp.value">
-          <rect
-            [attr.x]="getLabelPosition(comp).x - 50"
-            [attr.y]="getLabelPosition(comp).y - 16"
-            width="100"
-            height="32"
-            fill="white"
-            stroke="#F39C12"
-            stroke-width="2"
-            rx="6"
-            class="label-bg"/>
-          
-          <text
-            [attr.x]="getLabelPosition(comp).x"
-            [attr.y]="getLabelPosition(comp).y"
-            text-anchor="middle"
-            dominant-baseline="middle"
-            class="label-text">
-            {{ comp.value }}
-          </text>
-        </ng-container>
+  </g>
+      
+  <g class="components">
+    <ng-container *ngFor="let comp of componentes">
+      <ng-container *ngIf="comp.type !== 'opencircuit'">
+        <image [attr.xlink:href]="getComponentSvgPath(comp.type)" [attr.x]="getComponentMidPoint(comp).x - 40" [attr.y]="getComponentMidPoint(comp).y - 40" width="80" height="80" [attr.transform]="'rotate(' + getComponentRotation(comp) + ' ' + getComponentMidPoint(comp).x + ' ' + getComponentMidPoint(comp).y + ')'" class="component-image"/>
       </ng-container>
-    </g>
-    
-    <g class="nodes">
-      <ng-container *ngFor="let nodo of nodos">
-        <image
-          [attr.xlink:href]="getNodeSvgPath(nodo.type)"
-          [attr.x]="getNodeX(nodo.col) - 30"
-          [attr.y]="getNodeY(nodo.row) - 30"
-          width="60"
-          height="60"
-          class="node-image"/>
-
+    </ng-container>
+  </g>
+      
+  <g class="labels">
+    <ng-container *ngFor="let comp of componentes">
+      <ng-container *ngIf="comp.value">
+        <rect [attr.x]="getLabelPosition(comp).x - 50" [attr.y]="getLabelPosition(comp).y - 16" width="100" height="32" fill="white" stroke="#F39C12" stroke-width="2" rx="6" class="label-bg"/>
+            
+        <text [attr.x]="getLabelPosition(comp).x" [attr.y]="getLabelPosition(comp).y" text-anchor="middle" dominant-baseline="middle" class="label-text">
+          {{ comp.value }}
+        </text>
       </ng-container>
-    </g>
+    </ng-container>
+  </g>
+      
+  <g class="nodes">
+    <ng-container *ngFor="let nodo of nodos">
+      <image [attr.xlink:href]="getNodeSvgPath(nodo.type)" [attr.x]="getNodeX(nodo.col) - 30" [attr.y]="getNodeY(nodo.row) - 30" width="60" height="60" class="node-image"/>
+    </ng-container>
+  </g>
       
   </svg>
-</div>
-
-<div *ngIf="!circuitData" class="no-data">
-  <p>No hay datos del circuito para mostrar</p>
 </div>
