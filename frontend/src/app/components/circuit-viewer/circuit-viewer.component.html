@@ -6,10 +6,20 @@
       <ng-container *ngIf="getNode(comp.source) as sourceNode">
         <ng-container *ngIf="getNode(comp.target) as targetNode">
           <line [attr.x1]="getNodeX(sourceNode.col)" [attr.y1]="getNodeY(sourceNode.row)" [attr.x2]="getNodeX(targetNode.col)" [attr.y2]="getNodeY(targetNode.row)" [attr.stroke]="'#1E90FF'" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
+          <!-- - `x1, y1`**: Coordenadas del punto de inicio
+          - `x2, y2`**: Coordenadas del punto final
+          - `stroke`**: Color de la línea
+          - `stroke-width`**: Grosor de la línea
+          - `stroke-linecap`**: Forma de los extremos (`round` = redondeados)
+          - `opacity`**: Transparencia (0.3 = 30% opaco) -->
         </ng-container>
       </ng-container>
     </ng-container>
   </g>
+  <!-- g es un elemento de agrupacion -->
+  
+  <!-- ng-container seria un elemento de contenedor fantasma que no genera ningun elemento HTML
+  para usar directivas ngFor y ngIf sin añadir elementos extra al DOM, sustituye al div -->
       
   <g class="components">
     <ng-container *ngFor="let comp of componentes">
