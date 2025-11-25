@@ -161,7 +161,7 @@ export class CircuitViewerComponent implements OnChanges {
 
   // Calcula donde poner la etiqueta con el valor
 
-getComponentSvgPath(type: string): string {
+getComponentImgPath(type: string): string {
   const paths: {[key: string]: string} = {
     'resistor': 'assets/components/resistor.png',
     'capacitor': 'assets/components/capacitor.png',
@@ -174,7 +174,7 @@ getComponentSvgPath(type: string): string {
   return paths[type] || 'assets/components/resistor.png';
 }
 
-getNodeSvgPath(type: string): string {
+getNodeImgPath(type: string): string {
   const paths: {[key: string]: string} = {
     'corner-top-left': 'assets/nodes/corner-top-left.png',
     'corner-top-right': 'assets/nodes/corner-top-right.png',
