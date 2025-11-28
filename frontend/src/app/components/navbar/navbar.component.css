@@ -1,5 +1,5 @@
 .navbar {
-  background: linear-gradient(90deg, #ffffff 25%, #a1a1ed 35%, #25255e 90%);
+  background: whitesmoke;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   padding: 0;
   position: sticky;
@@ -9,7 +9,7 @@
 }
 
 .logo {
-  height: 50px;
+  height: 60px;
   width: auto;
 }
 
@@ -20,10 +20,29 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
+  position: relative;
+}
+
+
+
+
+.menu-ham {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1002;
+  transition: transform 0.3s;
 }
 
 .navbar-brand a {
   text-decoration: none;
+  display: block;
 }
 
 .navbar-menu {
@@ -40,19 +59,38 @@
 }
 
 .bloque-nombre {
-  display: block;
-  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1c1c1c;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
   transition: all 0.3s;
   font-weight: 500;
   font-size: 1rem;
   cursor: pointer;
+  
 }
 
 .navbar-item:hover .bloque-nombre {
   background: rgba(255, 255, 255, 0.2);
 }
+
+
+
+
+.arrow-icon {
+  transition: transform 0.3s;
+  display: none; 
+}
+
+.arrow-icon.rotated {
+  transform: rotate(180deg);
+}
+
+
+
+
 
 
 .desplegable {
@@ -74,10 +112,6 @@
   padding: 1rem 1.5rem;
   font-weight: 500;
   border-bottom: 1px solid white;
-}
-
-.desplegable-item:last-child {
-  border-bottom: none;
 }
 
 .desplegable-item:hover {
@@ -103,4 +137,120 @@
 
 .navbar-profile:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* MOVIL */
+
+
+
+@media (max-width: 992px) {
+  
+  /* Muestra el menu hamburguesa */
+  .menu-ham {
+    display: flex;
+  }
+  
+  /* Logo centrado */
+  .navbar-content {
+    padding: 0.75rem 1rem;
+  }
+  
+  .navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  /* Menú móvil (inicialmente oculto) */
+  .navbar-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(0deg, #000000 0%, #25255e 100%);
+    flex-direction: column;
+    gap: 0;
+    padding: 5rem 0 2rem 0;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    z-index: 1000;
+  }
+  
+  /* Menú móvil abierto */
+  .navbar-menu.active {
+    right: 0; /* Desliza desde la derecha */
+  }
+  
+  /* Items del menú en móvil */
+  .navbar-item {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .bloque-nombre {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    justify-content: space-between;
+    color: whitesmoke;
+  }
+  
+  /* Mostrar flechita en móvil */
+  .arrow-icon {
+    display: block;
+  }
+  
+  /* Desplegable en móvil */
+  .desplegable {
+    position: static;
+    box-shadow: none;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+  }
+  
+  .desplegable-item {
+    padding-left: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .desplegable-item:hover {
+    background: gray;
+  }
+  
+  .desplegable-item.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+  }
+  
+  /* Overlay oscuro cuando el menú está abierto */
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s;
+  }
+  
+
+  
 }

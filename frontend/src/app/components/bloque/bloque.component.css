@@ -3,6 +3,7 @@
     margin: 0 auto;
     padding: 2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #B0E0E6;
 }
 
 h1 {
@@ -15,6 +16,8 @@ h1 {
     border-radius: 4px;
     padding-left: 1rem;
     padding-bottom: 1rem;
+    padding-top: 1rem;
+    background-color: whitesmoke;
 }
 
 h2 {

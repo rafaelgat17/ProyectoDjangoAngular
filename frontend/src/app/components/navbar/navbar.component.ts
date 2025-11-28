@@ -19,16 +19,44 @@ export class NavbarComponent {
   ];
 
   bloqueAbierto: number | null = null;
+  // bloqueAbierto se le asigna el valor nulo predeterminadamente y cuando no se pasa el raton por encima de ningun bloque
+
+  menuMovilAbierto: boolean = false;
 
   abrirDesplegable(bloqueId: number) {
     this.bloqueAbierto = bloqueId;
   }
 
+  // al hacer hover sobre algun elemento del navbar se ejecuta esta funcion la cual se le pasa el id del elemento del navbar y por lo tanto bloqueAbierto deja de ser null
+
   cerrarDesplegable() {
     this.bloqueAbierto = null;
   }
 
+  // cuando se quita el hover inmediatamente se cambia null el valor
+
   estaAbierto(bloqueId: number): boolean {
     return this.bloqueAbierto === bloqueId;
+  }
+
+  // si el id del bloque coincide con su id se abre el menu desplegable
+
+  
+
+  toggleMenuMovil() {
+    this.menuMovilAbierto = !this.menuMovilAbierto;
+  }
+
+  cerrarMenuMovil() {
+    this.menuMovilAbierto = false;
+    this.bloqueAbierto = null;
+  }
+
+  toggleDesplegableMovil(bloqueId: number) {
+    if (this.bloqueAbierto === bloqueId) {
+      this.bloqueAbierto = null;
+    } else {
+      this.bloqueAbierto = bloqueId;
+    }
   }
 }
