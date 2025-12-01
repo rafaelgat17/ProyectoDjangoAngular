@@ -11,6 +11,7 @@
     justify-content: center;
     list-style: none;
     gap: 100px;
+    flex-wrap: wrap;
 }
 
 .secundario {
@@ -28,4 +29,27 @@
 
 .separacion {
     margin-bottom: 1rem;
+}
+
+
+
+@media (max-width: 768px) {
+    .principal {
+        flex-direction: column; 
+        gap: 0; 
+        align-items: flex-start; 
+        max-width: 100%;
+        padding-left: 10px;
+    }
+
+    .secundario {
+        width: 100%; 
+        text-align: left; 
+        margin-bottom: 1.5rem; 
+        min-width: unset;
+    }
+
+    .separacion {
+        margin-bottom: 0.5rem; 
+    }
 }

@@ -10,10 +10,10 @@ def most_significant_digit(num):
     cifra = int(abs(num) / 10**exp)
     return -exp
 
-msd = [(0, ' '),
-       (3, 'm-'),
-       (6, 'micro-'),
-       (9, 'n-')]
+msd = [(0, ''),
+    (3, 'm'),
+    (6, 'µ'),
+    (9, 'n')]
 
 def format_with_prefix(val):
     exp = most_significant_digit(val)
@@ -75,7 +75,7 @@ class circuit():
                 if el == 'resistor':    
                     val = random.choice(limits[el])    
                     imp = val       
-                    string_val = format_with_prefix(val) + 'Omega'
+                    string_val = format_with_prefix(val) + 'Ω'
                 elif el == 'inductor':
                     val = random.choice(limits[el])
                     imp = complex(0, 2*np.pi*50*val) 
@@ -97,8 +97,8 @@ class circuit():
                 el = random.choice(passive)    
                 if el == 'resistor':    
                     val = random.choice(limits[el])    
-                    imp = val           
-                    string_val = format_with_prefix(val) + 'Omega'
+                    imp = val       
+                    string_val = format_with_prefix(val) + 'Ω'
                 elif el == 'inductor':
                     val = random.choice(limits[el])
                     imp = complex(0, 2*np.pi*50*val) 
@@ -120,7 +120,7 @@ class circuit():
             self.G[e[0]][e[1]]["element"] = random.choice(active)
             self.G[e[0]][e[1]]["value"] = random.choice(limits[self.G[e[0]][e[1]]["element"]])
             self.G[e[0]][e[1]]["impedance"] = None
-            self.G[e[0]][e[1]]["str_value"] = f'{self.G[e[0]][e[1]]["value"]} V' if self.G[e[0]][e[1]]["element"] == 'v_source' else f'{self.G[e[0]][e[1]]["value"]} A'
+            self.G[e[0]][e[1]]["str_value"] = f'{self.G[e[0]][e[1]]["value"]}V' if self.G[e[0]][e[1]]["element"] == 'v_source' else f'{self.G[e[0]][e[1]]["value"]}A'
         self.edges = list(self.G.edges(data=True))
         
         
