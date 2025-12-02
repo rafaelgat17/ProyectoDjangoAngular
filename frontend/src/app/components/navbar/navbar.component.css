@@ -29,7 +29,6 @@
 .menu-ham {
   display: none;
   flex-direction: column;
-  justify-content: space-around;
   width: 30px;
   height: 25px;
   background: transparent;
@@ -37,7 +36,6 @@
   cursor: pointer;
   padding: 0;
   z-index: 1002;
-  transition: transform 0.3s;
 }
 
 .navbar-brand a {
@@ -55,7 +53,6 @@
 
 .navbar-item {
   position: relative;
-  margin: 0;
 }
 
 .bloque-nombre {
@@ -65,33 +62,16 @@
   color: #1c1c1c;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
-  transition: all 0.3s;
+  transition: 0.3s;
   font-weight: 500;
   font-size: 1rem;
   cursor: pointer;
   
 }
 
-.navbar-item:hover .bloque-nombre {
-  background: rgba(255, 255, 255, 0.2);
+.bloque-nombre:hover {
+  background: rgba(131, 205, 255, 0.67);
 }
-
-
-
-
-.arrow-icon {
-  transition: transform 0.3s;
-  display: none; 
-}
-
-.arrow-icon.rotated {
-  transform: rotate(180deg);
-}
-
-
-
-
-
 
 .desplegable {
   position: absolute;
@@ -104,6 +84,10 @@
   margin-top: 0.2rem;
   overflow: hidden;
 }
+
+/* desplegable: Estilo de la caja que contiene los enlaces de Teoría/Ejercicio.
+  - position: absolute: Se coloca debajo del .navbar-item padre (gracias al 'position: relative' del padre).
+  - top: 100%: Lo coloca justo debajo del nombre del bloque. */
 
 .desplegable-item {
   display: block;
@@ -125,6 +109,8 @@
   font-weight: 600;
 }
 
+/* desplegable-item.active: Estilo para la ruta activa (controlado por routerLinkActive en el HTML). */
+
 .navbar-profile {
   color: white;
   font-size: 1.1rem;
@@ -136,7 +122,7 @@
 }
 
 .navbar-profile:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(131, 205, 255, 0.67);
 }
 
 
@@ -158,11 +144,6 @@
   /* Muestra el menu hamburguesa */
   .menu-ham {
     display: flex;
-  }
-  
-  /* Logo centrado */
-  .navbar-content {
-    padding: 0.75rem 1rem;
   }
   
   .navbar-brand {

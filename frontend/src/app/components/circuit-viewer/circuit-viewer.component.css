@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
   border-radius: 12px;
   margin: 1rem 0;
 }
@@ -24,18 +23,20 @@
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.4));
 }
 
-.node-label {
-  font-size: 10px;
+.label-text-outline, .label-text-fill {
+  font-size: 13px;
   font-weight: bold;
-  fill: white;
   pointer-events: none;
   user-select: none;
 }
 
-.label-text {
-  font-size: 13px;
-  font-weight: bold;
+.label-text-outline {
+  stroke: white;
+  stroke-width: 4px;
+  fill: none;
+}
+
+.label-text-fill {
+  stroke: none;
   fill: black;
-  pointer-events: none;
-  user-select: none;
 }

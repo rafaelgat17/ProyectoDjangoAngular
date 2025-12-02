@@ -199,7 +199,7 @@ class circuit():
                             alpha=0.95),
                 zorder=3)
     
-        # PASO 3: Dibujar etiquetas con SOLO UNIDADES (horizontal siempre)
+        # PASO 3: Dibujar etiquetas con solo unidades (horizontal siempre)
         for e in self.edges:
             n1, n2 = e[0], e[1]
             x1, y1 = pos[n1]
@@ -212,19 +212,18 @@ class circuit():
                 cx, cy = (x1 + x2) / 2, (y1 + y2) / 2
                 
                 # Determinar posición de la etiqueta según orientación
-                if x1 == x2:  # Conexión VERTICAL
+                if x1 == x2:  # Conexión vertical
                     label_x = cx + 0.55  # A la derecha
                     label_y = cy
-                else:  # Conexión HORIZONTAL
+                else:  # Conexión horizontal
                     label_x = cx
                     label_y = cy - 0.4  # Debajo
             
-                # Dibujar etiqueta (SIEMPRE HORIZONTAL)
                 ax.text(label_x, label_y, string_val,
                     ha='center', va='center',
                     fontsize=9, fontweight='bold',
                     color='#E74C3C',
-                    rotation=0,  # SIEMPRE HORIZONTAL
+                    rotation=0,
                     bbox=dict(boxstyle='round,pad=0.35',
                                 facecolor='#FEF5E7',
                                 edgecolor='#F39C12',
@@ -234,7 +233,6 @@ class circuit():
     
         # PASO 4: Dibujar nodos (capa superior)
         for node, (x, y) in pos.items():
-            # Círculo del nodo
             circle = plt.Circle((x, y), 0.18, 
                             color='#3498DB', 
                             edgecolor='#2C3E50', 
@@ -242,7 +240,6 @@ class circuit():
                             zorder=5)
             ax.add_patch(circle)
             
-            # Etiqueta del nodo
             ax.text(x, y, node, 
                 ha='center', va='center', 
                 fontsize=10, fontweight='bold', 
@@ -252,27 +249,22 @@ class circuit():
         # PASO 5: Configuración final de la figura
         ax.set_aspect('equal')
         
-        # Grid sutil
         ax.grid(True, alpha=0.2, linestyle='--', color='#BDC3C7', linewidth=0.5)
         
-        # Título
         ax.set_title(f'Circuito Eléctrico {rows}×{cols}', 
                     fontsize=20, fontweight='bold', 
                     color='#2C3E50', 
                     pad=25,
                     fontfamily='sans-serif')
         
-        # Ajustar límites con margen
         all_x = [pos[n][0] for n in self.nodes]
         all_y = [pos[n][1] for n in self.nodes]
         margin = 1.0
         ax.set_xlim(min(all_x) - margin, max(all_x) + margin)
         ax.set_ylim(min(all_y) - margin, max(all_y) + margin)
         
-        # Ocultar ejes
         ax.axis('off')
         
-        # Ajustar layout
         plt.tight_layout()
     
     

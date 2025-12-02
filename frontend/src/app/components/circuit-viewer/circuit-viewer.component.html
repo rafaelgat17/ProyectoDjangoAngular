@@ -36,7 +36,11 @@
     <g class="labels">
       <ng-container *ngFor="let comp of componentes">
         <ng-container *ngIf="comp.value">
-          <text [attr.x]="getLabelPosition(comp).x" [attr.y]="getLabelPosition(comp).y" text-anchor="middle" dominant-baseline="middle" class="label-text">
+          <text [attr.x]="getLabelPosition(comp).x" [attr.y]="getLabelPosition(comp).y" text-anchor="middle" dominant-baseline="middle" class="label-text-outline">
+            {{ comp.value }}
+          </text>
+
+          <text [attr.x]="getLabelPosition(comp).x" [attr.y]="getLabelPosition(comp).y" text-anchor="middle" dominant-baseline="middle" class="label-text-fill">
             {{ comp.value }}
           </text>
         </ng-container>

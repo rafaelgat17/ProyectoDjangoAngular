@@ -43,6 +43,7 @@ export class CircuitViewerComponent implements OnChanges {
   
   readonly CELL_SIZE = 200;
   readonly NODE_RADIUS = 18;
+  readonly MARGIN = 80;
 
   // readonly es una constante, no se puede editar
   // CELL_SIZE representaria el tamaño de cada celda de la cuadricula en px
@@ -80,19 +81,21 @@ export class CircuitViewerComponent implements OnChanges {
     const cols = this.circuitData.cols || 3;
 
     // Si no se cambian las dimensiones se usan las de por defecto
+
+    const marginX = this.MARGIN + (cols > 4 ? 20 : 0);
+    const marginY = this.MARGIN + (rows > 3 ? 20 : 0);
     
-    const margin = 80;
-    this.imgWidth = (cols + 1) * this.CELL_SIZE + margin * 2;
-    this.imgHeight = (rows + 1) * this.CELL_SIZE + margin * 2;
+    this.imgWidth = (cols + 1) * this.CELL_SIZE + marginX * 2;
+    this.imgHeight = (rows + 1) * this.CELL_SIZE + marginY * 2;
 
   }
 
   getNodeX(col: number): number {
-    return 80 + (col + 0.5) * this.CELL_SIZE;
+    return this.MARGIN + (col + 0.5) * this.CELL_SIZE;
   }
 
   getNodeY(row: number): number {
-    return 80 + (row + 0.5) * this.CELL_SIZE;
+    return this.MARGIN + (row + 0.5) * this.CELL_SIZE;
   }
 
   // 80 es el margen inicial

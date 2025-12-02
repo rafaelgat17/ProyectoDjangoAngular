@@ -35,11 +35,8 @@
 
 
     <div *ngIf="circuitoGenerado && !cargando && circuitoGenerado.success" class="resultado">
-      <h3>{{ circuitoGenerado.mensaje }}</h3>
-
 
       <div class="imagen-circuito">
-        <h4>Circuito Generado:</h4>
         <app-circuit-viewer [circuitData]="circuitoGenerado.circuito"></app-circuit-viewer>
       </div>
 

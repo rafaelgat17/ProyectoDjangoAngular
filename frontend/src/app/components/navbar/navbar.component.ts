@@ -47,10 +47,14 @@ export class NavbarComponent {
     this.menuMovilAbierto = !this.menuMovilAbierto;
   }
 
+  // cambia el valor booleano de menuMovilAbierto, abre o cierra el menu hamburguesa
+
   cerrarMenuMovil() {
     this.menuMovilAbierto = false;
     this.bloqueAbierto = null;
   }
+
+  // comprueba que se ha cerrado el menu hamburguesa y tambien que no haya ningun desplegable del bloque se quede abierto
 
   toggleDesplegableMovil(bloqueId: number) {
     if (this.bloqueAbierto === bloqueId) {
@@ -59,4 +63,8 @@ export class NavbarComponent {
       this.bloqueAbierto = bloqueId;
     }
   }
+
+  // toggleDesplegableMovil: Gestiona la apertura y cierre del desplegable de bloques en la vista móvil.
+  // Si el desplegable ya estaba abierto (coincide el ID), lo cierra (lo pone a null).
+  // Si estaba cerrado, lo abre (asigna el nuevo ID). Esto permite abrir y cerrar con un solo clic.
 }
