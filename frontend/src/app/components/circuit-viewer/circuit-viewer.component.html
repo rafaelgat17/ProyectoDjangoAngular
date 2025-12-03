@@ -1,5 +1,5 @@
 <div class="circuit-container" *ngIf="circuitData">
-  <svg [attr.width]="imgWidth" [attr.height]="imgHeight" class="circuit-svg">
+  <svg [attr.width]="imgWidth" [attr.height]="imgHeight" [attr.viewBox]="(-MARGIN) + ' ' + (-MARGIN) + ' ' + imgWidth + ' ' + imgHeight" preserveAspectRatio="xMidYMid meet" class="circuit-svg">
     
     <g class="connections">
       <ng-container *ngFor="let comp of componentes">

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // Input es un decorador que permite recibir datos del componente padre
 // OnChanges se utilizara para detectar cambios en los datos de entrada
-// SimpleChanges es un tipo que contiene informacion acerca de que datos exactos son los que cambiaron
+// SimpleChanges es un tipo que contiene informacion acerca de que datos exactos son los que cambiaron en el input
 
 // CommonModule da acceso a Angular como *ngIf, *ngFor y otras mas
 
@@ -13,6 +13,8 @@ interface Nodo {
   col: number;
   type: string;
 }
+
+// el tipo del nodo sera la ubicacion de este, corner-top-left, corner-bottom-rigth
 
 interface Componente {
   id: string;
@@ -25,6 +27,10 @@ interface Componente {
 }
 
 // Aqui se definen la estructura de los objetos Nodo y Componente
+
+
+
+
 
 @Component({
   selector: 'app-circuit-viewer',
@@ -39,31 +45,39 @@ interface Componente {
 export class CircuitViewerComponent implements OnChanges {
   @Input() circuitData: any;
 
-  // Recibe los datos del padre
+  // recibe el objeto completo del circuito generado por el backend
   
-  readonly CELL_SIZE = 200;
-  readonly NODE_RADIUS = 18;
-  readonly MARGIN = 80;
+  public readonly CELL_SIZE = 200;
+  public readonly NODE_RADIUS = 18;
+  public readonly MARGIN = 80;
 
   // readonly es una constante, no se puede editar
-  // CELL_SIZE representaria el tamaño de cada celda de la cuadricula en px
+  // son constantes y publicas para que puedan ser leidas en el html
+  // cell_size es la distancia en pixeles entre dos nodos
+  // margin es el espacio del borde alrededor del circuito
   
   imgWidth = 0;
   imgHeight = 0;
 
-  // tamaño de la imagen el cual se calcula despues
+  // vendria siendo las dimensiones finales del circuito, se calcula luego en processCircuitData()
   
   nodos: Nodo[] = [];
   componentes: Componente[] = [];
 
-  // son arrays vacios que contendran los nodos y los componentes
+  // Propiedades de estado: Almacenan los datos de nodos y componentes extraídos y tipados para ser usados en los métodos.
+
+
+
+
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['circuitData'] && this.circuitData) {
       this.processCircuitData();
     }
     
-    // Si cambio circuitData Y si circuitData tiene valor entonces se procesan los datos
+    // ngonchanges se ejecuta cada vez que input cambia de valor en circuitdata
+    // comprueba que haya cambiado circuitdata y que ademas tiene un valor 
+    // si es asi llama a la funcion processCircuitData
 
   }
 
@@ -75,7 +89,7 @@ export class CircuitViewerComponent implements OnChanges {
     this.nodos = this.circuitData.nodos || [];
     this.componentes = this.circuitData.componentes || [];
     
-    // Si lo de la izquierda es falsy usa lo de la derecha
+    // asigna los arrays de nodos y componentes a las propiedades locales, si el objeto esta vacio, usa un array vacio
 
     const rows = this.circuitData.rows || 2;
     const cols = this.circuitData.cols || 3;
@@ -84,11 +98,21 @@ export class CircuitViewerComponent implements OnChanges {
 
     const marginX = this.MARGIN + (cols > 4 ? 20 : 0);
     const marginY = this.MARGIN + (rows > 3 ? 20 : 0);
+
+    // añade 20 pixeles extra al margin para circuitos mas grandes que 4x3
     
     this.imgWidth = (cols + 1) * this.CELL_SIZE + marginX * 2;
     this.imgHeight = (rows + 1) * this.CELL_SIZE + marginY * 2;
 
+    // Cálculo de Tamaño SVG: Define el tamaño total del SVG. La fórmula es:
+    // (Número de celdas + 1) * CELL_SIZE + (Margen ajustado * 2)
+    // Se suma 1 a rows/cols porque el dibujo incluye la celda final
+
   }
+
+
+
+
 
   getNodeX(col: number): number {
     return this.MARGIN + (col + 0.5) * this.CELL_SIZE;
@@ -103,11 +127,21 @@ export class CircuitViewerComponent implements OnChanges {
   // 0.5 para centrar
   // this.CELL_SIZE tamaño de la celda
 
+  // margin desplaza el circuito del borde superior/izquierdo para centrarlo
+  // (col/row + 0.5): Centra el nodo dentro de la celda de la cuadrícula
+  // CELL_SIZE: Aplica la escala
+
   getNode(nodeId: string): Nodo | undefined {
     return this.nodos.find(n => n.id === nodeId);
   }
 
-  // Busca un nodo en el array por su ID
+  // Busca un nodo en el array por su ID para encontrar las coordenadas de inicio y fin del componente
+
+
+
+
+
+
 
   getComponentMidPoint(comp: Componente): {x: number, y: number} {
     const sourceNode = this.getNode(comp.source);
@@ -132,11 +166,14 @@ export class CircuitViewerComponent implements OnChanges {
     };
   }
 
+  // calcula el punto exacto, en este caso el centro, donde debe dibujarse la imagen del componente o la etiqueta
+  // se promedia las coordenadas X e Y del nodo origen y del nodo destino
+
   getComponentRotation(comp: Componente): number {
     return comp.orientation === 'vertical' ? 90 : 0;
   }
 
-  // Devuelve el angulo de rotacion para el componente
+  // Devuelve el angulo de rotacion para el componente, basandose en el campo orientation envaido por el backend
 
   getLabelPosition(comp: Componente): {x: number, y: number} {
     const mid = this.getComponentMidPoint(comp);
@@ -162,7 +199,14 @@ export class CircuitViewerComponent implements OnChanges {
     }
   }
 
+  // getLabelPosition: Calcula las coordenadas X/Y finales para colocar la etiqueta de valor del componente.
+
   // Calcula donde poner la etiqueta con el valor
+
+
+
+
+
 
 getComponentImgPath(type: string): string {
   const paths: {[key: string]: string} = {
