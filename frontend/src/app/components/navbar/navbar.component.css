@@ -62,7 +62,6 @@
   color: #1c1c1c;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
-  transition: 0.3s;
   font-weight: 500;
   font-size: 1rem;
   cursor: pointer;
@@ -91,7 +90,7 @@
 
 .desplegable-item {
   display: block;
-  color: #2C3E50;
+  color: lightslategray;
   text-decoration: none;
   padding: 1rem 1.5rem;
   font-weight: 500;
@@ -99,7 +98,6 @@
 }
 
 .desplegable-item:hover {
-  background: linear-gradient(90deg, #000000 0%, #25255e 100%);
   color: white;
 }
 
@@ -127,21 +125,8 @@
 
 
 
-
-
-
-
-
-
-
-
-/* MOVIL */
-
-
-
 @media (max-width: 992px) {
   
-  /* Muestra el menu hamburguesa */
   .menu-ham {
     display: flex;
   }
@@ -156,7 +141,6 @@
     height: 50px;
   }
   
-  /* Menú móvil (inicialmente oculto) */
   .navbar-menu {
     position: fixed;
     top: 0;
@@ -172,12 +156,10 @@
     z-index: 1000;
   }
   
-  /* Menú móvil abierto */
   .navbar-menu.active {
-    right: 0; /* Desliza desde la derecha */
+    left: 0;
   }
   
-  /* Items del menú en móvil */
   .navbar-item {
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -191,12 +173,10 @@
     color: whitesmoke;
   }
   
-  /* Mostrar flechita en móvil */
   .arrow-icon {
     display: block;
   }
   
-  /* Desplegable en móvil */
   .desplegable {
     position: static;
     box-shadow: none;
@@ -211,15 +191,14 @@
   }
   
   .desplegable-item:hover {
-    background: gray;
+    background: rgba(131, 205, 255, 0.67);;
   }
   
   .desplegable-item.active {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.15);
     color: white;
   }
   
-  /* Overlay oscuro cuando el menú está abierto */
   .overlay {
     display: block;
     position: fixed;
@@ -229,9 +208,6 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
-    animation: fadeIn 0.3s;
   }
-  
-
   
 }

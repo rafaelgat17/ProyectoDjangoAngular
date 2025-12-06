@@ -26,6 +26,16 @@ export class BloqueComponent implements OnInit {
   rows: number = 2;
   cols: number = 3;
 
+    respuestas = {
+    pregunta1: null as number | null,
+    pregunta2: null as number | null,
+    pregunta3: null as number | null
+  };
+  
+  // Control del resultado
+  resultadoVisible: boolean = false;
+  mensajeResultado: string = '';
+
   constructor(
     private route: ActivatedRoute, // para leer la URL
     private circuitosService: CircuitosService // para hacer peticiones a Django.
@@ -42,6 +52,8 @@ export class BloqueComponent implements OnInit {
   generarEjercicio() {
     this.cargando = true; // activa el cargando
     this.circuitoGenerado = null; // limpia el circuito anterior
+
+    this.limpiarRespuestas();
     
     const datos = { // crea el objeto
       bloque: this.bloqueId,
@@ -63,4 +75,28 @@ export class BloqueComponent implements OnInit {
         }
       });
   }
+
+
+comprobarRespuestas() {
+  if (this.respuestas.pregunta1 === null || 
+      this.respuestas.pregunta2 === null || 
+      this.respuestas.pregunta3 === null) {
+    this.mensajeResultado = 'Por favor, rellena todas las preguntas';
+    this.resultadoVisible = true;
+    return;
+  }
+
+  this.mensajeResultado = 'Comprobando respuesta';
+  this.resultadoVisible = true;
+}
+
+limpiarRespuestas() {
+  this.respuestas = {
+    pregunta1: null,
+    pregunta2: null,
+    pregunta3: null
+  };
+  this.resultadoVisible = false;
+  this.mensajeResultado = '';
+}
 }

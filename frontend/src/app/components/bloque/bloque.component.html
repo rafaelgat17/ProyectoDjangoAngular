@@ -40,6 +40,81 @@
         <app-circuit-viewer [circuitData]="circuitoGenerado.circuito"></app-circuit-viewer>
       </div>
 
+      <div class="preguntas-section" *ngIf="circuitoGenerado && !cargando">
+        <h3>Preguntas sobre el circuito</h3>
+        <p class="preguntas-instruccion">
+          Calcula los valores solicitados del circuito generado:
+        </p>
+        
+        <div class="preguntas-grid">
+          
+          <div class="pregunta-item">
+            <label for="pregunta1">
+              <span class="pregunta-numero">1.</span>
+              Tensión total (V):
+            </label>
+            <div class="input-div">
+              <input 
+                type="number" 
+                id="pregunta1" 
+                [(ngModel)]="respuestas.pregunta1"
+                placeholder="0.00"
+                step="0.01">
+              <span class="input-unit">V</span>
+            </div>
+          </div>
+          
+          <div class="pregunta-item">
+            <label for="pregunta2">
+              <span class="pregunta-numero">2.</span>
+              Corriente total (A):
+            </label>
+            <div class="input-div">
+              <input 
+                type="number" 
+                id="pregunta2" 
+                [(ngModel)]="respuestas.pregunta2"
+                placeholder="0.00"
+                step="0.01">
+              <span class="input-unit">A</span>
+            </div>
+          </div>
+          
+          <div class="pregunta-item">
+            <label for="pregunta3">
+              <span class="pregunta-numero">3.</span>
+              Potencia total (W):
+            </label>
+            <div class="input-div">
+              <input 
+                type="number" 
+                id="pregunta3" 
+                [(ngModel)]="respuestas.pregunta3"
+                placeholder="0.00"
+                step="0.01">
+              <span class="input-unit">W</span>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="preguntas-acciones">
+          <button class="btn-comprobar" (click)="comprobarRespuestas()">
+            Comprobar Respuestas
+          </button>
+          <button class="btn-limpiar" (click)="limpiarRespuestas()">
+            Limpiar
+          </button>
+        </div>
+        
+        <div class="resultado-preguntas" *ngIf="resultadoVisible">
+          <p class="resultado-mensaje">
+            {{ mensajeResultado }}
+          </p>
+        </div>
+        
+      </div>
+
     <div *ngIf="circuitoGenerado && !circuitoGenerado.success" class="error">
       <h3>Error</h3>
       <p>{{ circuitoGenerado.mensaje }}</p>

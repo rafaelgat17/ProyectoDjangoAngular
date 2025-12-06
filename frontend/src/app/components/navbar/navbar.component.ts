@@ -41,8 +41,6 @@ export class NavbarComponent {
 
   // si el id del bloque coincide con su id se abre el menu desplegable
 
-  
-
   toggleMenuMovil() {
     this.menuMovilAbierto = !this.menuMovilAbierto;
   }

@@ -113,3 +113,156 @@ h2 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
 }
+
+
+
+
+.preguntas-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #E0E6ED;
+  margin-top: 2rem;
+}
+
+.preguntas-section h3 {
+  color: #2C3E50;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.preguntas-instruccion {
+  color: #7F8C8D;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.preguntas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pregunta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pregunta-item label {
+  font-weight: 600;
+  color: #34495E;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pregunta-numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: rgba(161, 161, 237, 0.5);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.input-div {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pregunta-item input {
+  flex: 1;
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  border: 2px solid #E0E6ED;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.pregunta-item input:focus {
+  outline: none;
+  border-color: rgba(161, 161, 237, 0.5);
+}
+
+.pregunta-item input::placeholder {
+  color: #BDC3C7;
+}
+
+.input-unit {
+  position: absolute;
+  right: 1rem;
+  color: #7F8C8D;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.preguntas-acciones {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-comprobar, .btn-limpiar {
+  padding: 0.875rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-comprobar {
+  background: rgba(161, 161, 237, 0.5);
+  color: white;
+}
+
+.btn-comprobar:hover {
+  background: rgba(161, 161, 237, 0.5);
+}
+
+.btn-limpiar {
+  background: #E0E6ED;
+  color: #34495E;
+}
+
+.btn-limpiar:hover {
+  background: #D0D6DD;
+}
+
+.resultado-preguntas {
+  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  background: #E8F5E9;
+}
+
+.resultado-mensaje {
+  margin: 0;
+  color: #2E7D32;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+
+@media (max-width: 768px) {
+  .preguntas-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .preguntas-acciones {
+    flex-direction: column;
+  }
+  
+  .btn-comprobar, .btn-limpiar {
+    width: 100%;
+  }
+}
