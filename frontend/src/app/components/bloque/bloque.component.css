@@ -126,7 +126,7 @@ h2 {
 }
 
 .preguntas-section h3 {
-  color: #2C3E50;
+  color: #1c1c1c;
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
@@ -140,7 +140,6 @@ h2 {
 
 .preguntas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
@@ -153,7 +152,7 @@ h2 {
 
 .pregunta-item label {
   font-weight: 600;
-  color: #34495E;
+  color: #1c1c1c;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -231,7 +230,7 @@ h2 {
 
 .btn-limpiar {
   background: #E0E6ED;
-  color: #34495E;
+  color: #1c1c1c;
 }
 
 .btn-limpiar:hover {
