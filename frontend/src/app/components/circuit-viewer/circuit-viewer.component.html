@@ -20,7 +20,8 @@
     
     <!-- ng-container seria un elemento de contenedor fantasma que no genera ningun elemento HTML
     para usar directivas ngFor y ngIf sin añadir elementos extra al DOM, sustituye al div -->
-        
+
+
     <g class="components">
       <ng-container *ngFor="let comp of componentes">
         <ng-container *ngIf="comp.type !== 'opencircuit'">

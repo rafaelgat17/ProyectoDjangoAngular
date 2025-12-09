@@ -164,9 +164,9 @@ h2 {
   justify-content: center;
   width: 26px;
   height: 26px;
-  background: rgba(161, 161, 237, 0.5);
+  background: mediumpurple;
   color: white;
-  border-radius: 50%;
+  border-radius: 20%;
   font-size: 0.85rem;
   font-weight: 700;
 }
@@ -188,7 +188,7 @@ h2 {
 
 .pregunta-item input:focus {
   outline: none;
-  border-color: rgba(161, 161, 237, 0.5);
+  border-color: rgba(0, 0, 255, 0.5);
 }
 
 .pregunta-item input::placeholder {
@@ -220,12 +220,13 @@ h2 {
 }
 
 .btn-comprobar {
-  background: rgba(161, 161, 237, 0.5);
+  background: mediumpurple;
   color: white;
 }
 
 .btn-comprobar:hover {
   background: rgba(161, 161, 237, 0.5);
+  color: black;
 }
 
 .btn-limpiar {
@@ -241,12 +242,12 @@ h2 {
   margin-top: 1.5rem;
   padding: 1rem 1.5rem;
   border-radius: 6px;
-  background: #E8F5E9;
+  background: #ffcf76;
 }
 
 .resultado-mensaje {
   margin: 0;
-  color: #2E7D32;
+  color: #915e00;
   font-weight: 500;
   font-size: 1rem;
 }

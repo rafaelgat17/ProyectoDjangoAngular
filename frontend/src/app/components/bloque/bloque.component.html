@@ -43,7 +43,7 @@
       <div class="preguntas-section" *ngIf="circuitoGenerado && !cargando">
         <h3>Preguntas sobre el circuito</h3>
         <p class="preguntas-instruccion">
-          Calcula los valores solicitados del circuito generado:
+          Calcula los valores del circuito generado:
         </p>
         
         <div class="preguntas-grid">
@@ -54,12 +54,7 @@
               Pregunta 1:
             </label>
             <div class="input-div">
-              <input 
-                type="number" 
-                id="pregunta1" 
-                [(ngModel)]="respuestas.pregunta1"
-                placeholder="0.00"
-                step="0.01">
+              <input type="number" id="pregunta1" [(ngModel)]="respuestas.pregunta1" placeholder="0.00" step="0.01">
               <span class="input-unit">V</span>
             </div>
           </div>
@@ -70,12 +65,7 @@
               Pregunta 2:
             </label>
             <div class="input-div">
-              <input 
-                type="number" 
-                id="pregunta2" 
-                [(ngModel)]="respuestas.pregunta2"
-                placeholder="0.00"
-                step="0.01">
+              <input type="number" id="pregunta2" [(ngModel)]="respuestas.pregunta2" placeholder="0.00" step="0.01">
               <span class="input-unit">A</span>
             </div>
           </div>
@@ -86,12 +76,7 @@
               Pregunta 3:
             </label>
             <div class="input-div">
-              <input 
-                type="number" 
-                id="pregunta3" 
-                [(ngModel)]="respuestas.pregunta3"
-                placeholder="0.00"
-                step="0.01">
+              <input type="number" id="pregunta3" [(ngModel)]="respuestas.pregunta3" placeholder="0.00" step="0.01">
               <span class="input-unit">W</span>
             </div>
           </div>
