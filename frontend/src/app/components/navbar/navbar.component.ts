@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,13 @@ export class NavbarComponent {
     { id: 4, nombre: 'Bloque 4' },
     { id: 5, nombre: 'Bloque 5' }
   ];
+
+  constructor(private authService: AuthService) {}
+
+  logout() {
+  this.authService.logout();
+  this.cerrarMenuMovil();
+  }
 
   bloqueAbierto: number | null = null;
   // bloqueAbierto se le asigna el valor nulo predeterminadamente y cuando no se pasa el raton por encima de ningun bloque
@@ -65,4 +73,6 @@ export class NavbarComponent {
   // toggleDesplegableMovil: Gestiona la apertura y cierre del desplegable de bloques en la vista móvil.
   // Si el desplegable ya estaba abierto (coincide el ID), lo cierra (lo pone a null).
   // Si estaba cerrado, lo abre (asigna el nuevo ID). Esto permite abrir y cerrar con un solo clic.
+
+
 }
