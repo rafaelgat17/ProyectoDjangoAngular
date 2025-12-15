@@ -1,36 +1,53 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+// para hacer peticiones al backend
 import { Observable, BehaviorSubject } from 'rxjs';
+// Observable es la base de las peticiones asincronas, sin el no se podria hacer
+// BehaviorSubject PERMITE EMITIR VALORES Y ALMACENAR EL ESTADO DE AUTENTICACION
 import { tap } from 'rxjs/operators';
+// aqui lo usamos para guardar el token, esta relacionado con el observable
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   private apiUrl = 'http://localhost:8000/api/auth';
+  // url a la base de datos donde se le pasaran todas las peticiones de autenticacion
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
+  // como se dijo antes, behaviorSubject almacena el estado de autenticacion, mas concretamente en este caso un booleano, se inicializa con el resultado de hasToken()
+
   private isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+  // Observable publico (de ahi el simbolo $), otros componentes pueden suscribirse para reaccionar a los cambios de autenticacion, como por ejemplo mostrar/ocultar botones de login o logout
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) {}
+  // inyecta las dependencias necesarias
+
 
   private hasToken(): boolean {
     return !!localStorage.getItem('token');
   }
+  // funcion que le servira al behaviorSubject si el usuario esta autenticado o no, se usa el !! para convertir el resultado de (string o null) a (true o false)
 
   login(uvus: string, password: string): Observable<any> {
+    // se activa la secuencia de login
     return this.http.post(`${this.apiUrl}/login/`, { uvus, password })
+    // realiza una peticion post a /api/auth/login, con las credenciales enviadas, devuelve un observable
       .pipe(
         tap((response: any) => {
+          // Utiliza el operador tap para ejecutar código inmediatamente después de que la petición sea exitosa, pero antes de que el componente que llama reciba la respuesta
           if (response.token) {
             localStorage.setItem('token', response.token);
             localStorage.setItem('uvus', response.uvus);
+            // si el login es exitoso, se guarda en local para que persista la sesion
             this.isAuthenticatedSubject.next(true);
+            // Notifica a todos los suscriptores (como el AuthGuard o la barra de navegación) que el usuario ahora está autenticado, cambiando el estado global
           }
         })
       );
@@ -56,16 +73,23 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  // cierra sesion, se eliminan ambos campos del local
+  // redirige al login
+
+
   getToken(): string | null {
     return localStorage.getItem('token');
   }
+  // Recupera el valor del token almacenado en local storage, en este caso si es string o nulo
 
   getUvus(): string | null {
     return localStorage.getItem('uvus');
   }
+  // Recupera el campo uvus almacenado de igual forma
 
   isLoggedIn(): boolean {
     return this.hasToken();
   }
+  // Metodo que expone el estado de autenticacion basado en la existencia del token (hasToken deuvelve true o false) 
   
 }

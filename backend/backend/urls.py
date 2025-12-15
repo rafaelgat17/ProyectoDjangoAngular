@@ -20,6 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/circuitos/', include('circuitos.urls')),
+    path('api/auth/', include('usuarios.urls')),
 ]
 
 # Si el usuario hace por ejemplo una peticion a api/circuitos/test, primeramente

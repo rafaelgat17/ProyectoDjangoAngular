@@ -57,17 +57,10 @@ export class RegistroComponent {
         this.router.navigate(['/']);
       },
       error: (err) => {
-        this.error = 'Error al registrar. El UVUS puede estar en uso.';
+        this.error = 'Error al registrar.';
         this.cargando = false;
       }
     });
-
-    setTimeout(() => {
-      localStorage.setItem('token', 'token-temporal');
-      localStorage.setItem('uvus', this.uvus);
-      this.cargando = false;
-      this.router.navigate(['/']);
-    }, 500);
 
   }
 

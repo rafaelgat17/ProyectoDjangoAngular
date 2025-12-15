@@ -40,13 +40,5 @@ export class LoginComponent {
         this.cargando = false;
       }
     });
-
-
-    setTimeout(() => {
-      localStorage.setItem('token', 'token-temporal');
-      localStorage.setItem('uvus', this.uvus);
-      this.cargando = false;
-      this.router.navigate(['/']);
-    }, 500);
   }
 }

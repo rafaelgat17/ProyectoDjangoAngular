@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework', # con esto django puede enviar y recibir datos en formato JSON
     'corsheaders', # por defecto los navegadores no permiten que una web hable con un servidor, este middleware lo soluciona
     'circuitos', # la aplicacion
+    'usuarios', # app de autenticacion
 ]
 
 MIDDLEWARE = [
@@ -59,11 +60,35 @@ CORS_ALLOWED_ORIGINS = [
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': []
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
 }
+
+
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60), # Tiempo de vida del token
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    # ... otras configuraciones de JWT
+}
+
+# Configuración necesaria para que 'uvus' funcione como 'username'
+# Si estás usando el modelo User por defecto de Django
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTH_USER_MODEL = 'usuarios.CustomUser' # <--- ESTA LÍNEA ES CRUCIAL
+
+
+
+
 
 ROOT_URLCONF = 'backend.urls'
 

@@ -4,11 +4,12 @@ import { TeoriaComponent } from './components/teoria/teoria.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: '', component: HomeComponent },  // Página de inicio
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },  // Página de inicio
   { path: 'bloque/:id/teoria', component: TeoriaComponent },  // Teoría
   { path: 'bloque/:id/ejercicio', component: BloqueComponent },  // Ejercicio
   { path: '**', redirectTo: '' }
