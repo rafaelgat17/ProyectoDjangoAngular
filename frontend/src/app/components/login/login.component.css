@@ -5,6 +5,7 @@
   align-items: center;
   background: #B0E0E6;
   padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .login-card {
@@ -13,7 +14,6 @@
   border-radius: 12px;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
 .login-header {
@@ -23,17 +23,10 @@
 
 .login-header h1 {
   margin: 0 0 0.5rem 0;
-  color: #2C3E50;
+  color: #1c1c1c;
   font-size: 1.8rem;
 }
 
-.login-header p {
-  margin: 0;
-  color: #7F8C8D;
-  font-size: 0.95rem;
-}
-
-/* Formulario */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -41,7 +34,7 @@
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #34495E;
+  color: #1c1c1c;
   font-weight: 600;
   font-size: 0.95rem;
 }
@@ -49,22 +42,16 @@
 .form-group input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 2px solid #E0E6ED;
+  border: 2px solid darkgray;
   border-radius: 6px;
   font-size: 1rem;
   box-sizing: border-box;
 }
 
-.form-group input:focus {
-  outline: none;
-  border-color: #667eea;
-}
-
 .form-group input::placeholder {
-  color: #BDC3C7;
+  color: darkgray;
 }
 
-/* Error */
 .error-message {
   background: #FFEBEE;
   color: #C62828;
@@ -72,14 +59,12 @@
   border-radius: 6px;
   margin-bottom: 1rem;
   font-size: 0.9rem;
-  border-left: 4px solid #C62828;
 }
 
-/* Botón */
 .btn-login {
   width: 100%;
   padding: 0.875rem;
-  background: #667eea;
+  background: mediumpurple;
   color: white;
   border: none;
   border-radius: 6px;
@@ -88,16 +73,11 @@
   cursor: pointer;
 }
 
-.btn-login:hover:not(:disabled) {
-  background: #5568d3;
-}
-
 .btn-login:disabled {
   background: #BDC3C7;
   cursor: not-allowed;
 }
 
-/* Link a registro */
 .registro-link {
   text-align: center;
   margin-top: 1.5rem;
@@ -106,7 +86,7 @@
 }
 
 .registro-link a {
-  color: #667eea;
+  color: mediumpurple;
   text-decoration: none;
   font-weight: 600;
 }
@@ -115,7 +95,6 @@
   text-decoration: underline;
 }
 
-/* Responsive */
 @media (max-width: 480px) {
   .login-card {
     padding: 2rem 1.5rem;

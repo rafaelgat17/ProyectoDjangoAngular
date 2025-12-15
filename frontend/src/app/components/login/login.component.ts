@@ -22,6 +22,7 @@ export class LoginComponent {
   ) {}
 
   login() {
+    // metodo que se ejecuta cuando se envia el login
     this.error = '';
 
     if (!this.uvus || !this.password) {
@@ -32,6 +33,8 @@ export class LoginComponent {
     this.cargando = true;
 
     this.authService.login(this.uvus, this.password).subscribe({
+      // Llama al método login del AuthService y se suscribe al 
+      // Observable devuelto, iniciando la petición HTTP a Django
       next: (response) => {
         this.router.navigate(['/']);
       },

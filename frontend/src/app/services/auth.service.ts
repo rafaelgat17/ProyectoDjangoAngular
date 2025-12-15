@@ -93,3 +93,23 @@ export class AuthService {
   // Metodo que expone el estado de autenticacion basado en la existencia del token (hasToken deuvelve true o false) 
   
 }
+
+
+// Observable
+
+// Definicion:
+// Una fuente de datos que puede emitir cero o más valores.
+// Es un patrón de diseño que define un productor de datos 
+// (Observable) y un consumidor de datos (Observer/Subscriber).
+
+// Las llamadas a this.http.post(...) devuelven Observables, 
+// ya que la respuesta del servidor (éxito o error) llegará en 
+// el futuro.
+
+// Son perezosos (lazy), lo que significa que el código dentro 
+// del Observable (la petición HTTP) no se ejecuta hasta que 
+// alguien se suscribe a él.
+
+// En login.component.ts, la petición 
+// no se envía a Django hasta que llamas a .subscribe() en el 
+// Observable devuelto por authService.login().

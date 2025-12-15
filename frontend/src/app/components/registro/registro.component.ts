@@ -18,6 +18,9 @@ export class RegistroComponent {
   cargando: boolean = false;
   error: string = '';
 
+  // son las propiedades del componente que se vinculan con los del html
+  // directamente con ngModel, almacenan esos datos introducidos
+
   grados = [
     { valor: 'ing-tecnologias-industriales', nombre: 'Grado de Ingienería de Tecnologías Industriales' },
     { valor: 'ing-tecnologias-telecomunicacion', nombre: 'Grado en Ingeniería de las Tecnologías de Telecomunicación' },
@@ -29,13 +32,18 @@ export class RegistroComponent {
     { valor: 'ing-electronica-robotica-mecatronica', nombre: 'Grado en Ingienería Electrónica, Robótica y Mecatrónica' }
   ];
 
+  // para el dropdown
+
   constructor(
     private authService: AuthService,
     private router: Router
   ) {}
 
+  // se inyectan las dependencias
+
 
   register() {
+    // se ejecuta cuando se hace ngSubmit
     this.error = '';
 
     if (!this.uvus || !this.email || !this.grado || !this.password) {
@@ -52,9 +60,13 @@ export class RegistroComponent {
       password: this.password
     };
 
+    // crea un objeto con los datos introducidos listos para enviar al backend
+
     this.authService.register(datos).subscribe({
+      // llama al metodo register del servicio que realiza la peticion http a django, luego se suscribe al observable devuelto
       next: (response) => {
         this.router.navigate(['/']);
+        // si la peticion es exitosa envia al home
       },
       error: (err) => {
         this.error = 'Error al registrar.';
@@ -63,5 +75,7 @@ export class RegistroComponent {
     });
 
   }
+
+
 
 }
