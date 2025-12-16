@@ -16,11 +16,18 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         fields = ('uvus', 'email', 'grado', 'password')
         
     def create(self, validated_data):
+        
+        grado = validated_data.pop('grado', None)
+        
         user = User.objects.create_user(
             username=validated_data['uvus'],
             email=validated_data['email'],
             password=validated_data['password']
         )
+
+        user.grado = grado
+        user.save()
+        
         return user
     
 class UserLoginSerializer(serializers.Serializer):
