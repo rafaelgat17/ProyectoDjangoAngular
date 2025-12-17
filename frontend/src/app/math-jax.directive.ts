@@ -17,15 +17,15 @@ export class MathJaxDirective implements OnChanges {
 
   // ngOnChanges se ejecuta cuando el Input (appMathJax) cambia,
   // y también cuando el componente se inicializa con un valor.
-  ngOnChanges() {
+ngOnChanges() {
     if (this.appMathJax && MathJax) {
-      // Usamos setTimeout para asegurar que el contenido HTML haya sido pintado por Angular
-      setTimeout(() => {
-        // Establecer el contenido del elemento
-        this.el.nativeElement.innerHTML = this.appMathJax;
-
-        // Llamar a MathJax para procesar el contenido
-        MathJax.typesetPromise([this.el.nativeElement]);
+      // 1. Establece el contenido primero
+      this.el.nativeElement.innerHTML = this.appMathJax;
+      
+      // 2. Llama a MathJax para procesar
+      setTimeout(() => { // Usamos setTimeout para dar tiempo al DOM
+        MathJax.typesetPromise([this.el.nativeElement])
+               .catch(err => console.error('MathJax error:', err)); // <- Añade esto para debug
       }, 0);
     }
   }
