@@ -18,6 +18,7 @@ export class CircuitosService {
 
   // Angular le da a este servicio acceso a HttpClient para hacer peticiones HTTP.
 
+  
   testConnection(): Observable<any> {
     return this.http.get(`${this.apiUrl}/test/`);
   }

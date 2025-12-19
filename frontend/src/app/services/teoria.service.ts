@@ -14,7 +14,7 @@ export interface IBloqueTeoria {
 }
 
 export interface IContenidoTeoria {
-  [key: number]: IBloqueTeoria; // Indica que se puede indexar con un número
+  [key: number]: IBloqueTeoria;
 }
 
 const CONTENIDO_TEORIA: IContenidoTeoria = {
@@ -24,7 +24,7 @@ const CONTENIDO_TEORIA: IContenidoTeoria = {
       {
         titulo: 'Carga eléctrica',
         contenido: `
-          La **Carga eléctrica**, $q(t)$, es la propiedad de las partículas elementales que
+          La Carga eléctrica, $q(t)$, es la propiedad de las partículas elementales que
           constituyen la materia y que se manifiesta por medio de fuerzas eléctricas.
 
           <ul>
@@ -42,7 +42,6 @@ const CONTENIDO_TEORIA: IContenidoTeoria = {
       }
     ]
   },
-  // ... si añades más bloques (2, 3, 4, 5) deben ir aquí
 };
 
 @Injectable({
